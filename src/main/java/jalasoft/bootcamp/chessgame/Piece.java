@@ -1,14 +1,42 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package jalasoft.bootcamp.chessgame;
 
-/**
- *
- * @author BootCamp LP
- */
-public class Piece {
-    
+import java.util.List;
+
+public abstract class Piece {
+    private String type;
+    private String color;
+    private ChessSquare currentSquare;
+    private List<ChessSquare> ValidMoves;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public ChessSquare getCurrentSquare() {
+        return currentSquare;
+    }
+
+    public void setCurrentSquare(ChessSquare currentSquare) {
+        this.currentSquare = currentSquare;
+    }
+
+    public List<ChessSquare> getValidMoves() {
+        return ValidMoves;
+    }
+
+    public void setValidMoves(List<ChessSquare> ValidMoves) {
+        this.ValidMoves = ValidMoves;
+    }
 }
