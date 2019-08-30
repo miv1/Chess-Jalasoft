@@ -62,5 +62,12 @@ public class Game {
         return true;
     }
 
-   
+    public static void main(String[] args) {
+        Board boardGame = new Board();
+
+        boardGame.initGame();
+        boardGame.showBoard();
+        
+    }
+           
 }
