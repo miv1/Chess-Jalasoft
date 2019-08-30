@@ -5,14 +5,14 @@ import java.util.List;
 public  class Piece {
 
     
-    private String typePiece;
+    private char typePiece;
     private String color;
     private ChessSquare currentSquare;
     private List<ChessSquare> ValidMoves;
     
     public Piece(){}
     
-    public Piece putPiece(String type, String color, ChessSquare currentSquare) {
+    public Piece putPiece(char type, String color, ChessSquare currentSquare) {
         Piece newPiece=new Piece();
         newPiece.typePiece = type;
         newPiece.color = color;
@@ -20,11 +20,11 @@ public  class Piece {
         return newPiece;
     }
    
-    public String getTypePiece() {
+    public char getTypePiece() {
         return typePiece;
     }
 
-    public void setTypePiece(String type) {
+    public void setTypePiece(char type) {
         this.typePiece = type;
     }
 

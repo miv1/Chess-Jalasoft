@@ -20,53 +20,53 @@ public class Board {
                 if (i==1)
                {
                     //Piece pieceSpot=new Piece("P","W",new ChessSquare(i,j));
-                    spots[i][j]=newPiece.putPiece("P","B",new ChessSquare(i,j));
+                    spots[i][j]=newPiece.putPiece('P',"B",new ChessSquare(i,j));
                 }
                 else if( i==6){
-                     spots[i][j]=newPiece.putPiece("P","W",new ChessSquare(i,j));
+                     spots[i][j]=newPiece.putPiece('P',"W",new ChessSquare(i,j));
                 }
                 else if((i==0 && j==0)||(i==0 && j==7))
                 {
-                    spots[i][j]=newPiece.putPiece("T","B",new ChessSquare(i,j));
+                    spots[i][j]=newPiece.putPiece('T',"B",new ChessSquare(i,j));
                 }
                 else if((i==7 && j==0)||(i==7 && j==7))
                 {
-                    spots[i][j]=newPiece.putPiece("T","W",new ChessSquare(i,j));
+                    spots[i][j]=newPiece.putPiece('T',"W",new ChessSquare(i,j));
                 }  
                 else if((i==0 && j==1)||(i==0 && j==6))
                 {
-                    spots[i][j]=newPiece.putPiece("H","B",new ChessSquare(i,j));
+                    spots[i][j]=newPiece.putPiece('H',"B",new ChessSquare(i,j));
                 } 
                 else if((i==7 && j==1)||(i==7 && j==6))
                 {
-                    spots[i][j]=newPiece.putPiece("H","W",new ChessSquare(i,j));
+                    spots[i][j]=newPiece.putPiece('H',"W",new ChessSquare(i,j));
                 } 
                 else if((i==0 && j==2)||(i==0 && j==5))
                 {
-                    spots[i][j]=newPiece.putPiece("B","B",new ChessSquare(i,j));
+                    spots[i][j]=newPiece.putPiece('B',"B",new ChessSquare(i,j));
                 }
                 else if((i==7 && j==2)||(i==7 && j==5))
                 {
-                    spots[i][j]=newPiece.putPiece("B","W",new ChessSquare(i,j));
+                    spots[i][j]=newPiece.putPiece('B',"W",new ChessSquare(i,j));
                 }
                 else if((i==0 && j==3))
                 {
-                    spots[i][j]=newPiece.putPiece("Q","B",new ChessSquare(i,j));
+                    spots[i][j]=newPiece.putPiece('Q',"B",new ChessSquare(i,j));
                 }
                 else if((i==7 && j==4))
                 {
-                    spots[i][j]=newPiece.putPiece("Q","W",new ChessSquare(i,j));
+                    spots[i][j]=newPiece.putPiece('Q',"W",new ChessSquare(i,j));
                 }
                 else if((i==0 && j==4))
                 {
-                    spots[i][j]=newPiece.putPiece("K","B",new ChessSquare(i,j));
+                    spots[i][j]=newPiece.putPiece('K',"B",new ChessSquare(i,j));
                 }
                      else if((i==7 && j==3))
                 {
-                    spots[i][j]=newPiece.putPiece("K","W",new ChessSquare(i,j));
+                    spots[i][j]=newPiece.putPiece('K',"W",new ChessSquare(i,j));
                 }
                 else{
-                    Piece pieceSpot=newPiece.putPiece(" "," ",new ChessSquare(i,j));
+                    Piece pieceSpot=newPiece.putPiece(' '," ",new ChessSquare(i,j));
                     spots[i][j]=pieceSpot;
                 }
             }
@@ -82,20 +82,6 @@ public class Board {
             System.out.println("");
         }
     }
-    
 
-//    public Board() {
-//        super();
-//        for(int i=0; i<spots.length; i++){
-//            for(int j=0; j<spots.length; j++){
-//                this.spots[i][j] = new Spot(i, j);
-//                
-//            }
-//        }
-//    }
-
-//    public Spot getSpot(int x, int y) {
-//        return spots[x][y];
-//    }
 
 }
