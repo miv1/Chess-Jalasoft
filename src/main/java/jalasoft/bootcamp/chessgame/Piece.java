@@ -2,18 +2,30 @@ package jalasoft.bootcamp.chessgame;
 
 import java.util.List;
 
-public abstract class Piece {
-    private String type;
+public  class Piece {
+
+    
+    private String typePiece;
     private String color;
     private ChessSquare currentSquare;
     private List<ChessSquare> ValidMoves;
-
-    public String getType() {
-        return type;
+    
+    public Piece(){}
+    
+    public Piece putPiece(String type, String color, ChessSquare currentSquare) {
+        Piece newPiece=new Piece();
+        newPiece.typePiece = type;
+        newPiece.color = color;
+        newPiece.currentSquare = currentSquare;
+        return newPiece;
+    }
+   
+    public String getTypePiece() {
+        return typePiece;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setTypePiece(String type) {
+        this.typePiece = type;
     }
 
     public String getColor() {
