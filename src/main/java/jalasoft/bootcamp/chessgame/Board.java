@@ -9,7 +9,7 @@ package jalasoft.bootcamp.chessgame;
  *
  * @author BootCamp LP
  */
-public class Board {
+public class Board  {
     Piece spots[][] = new Piece[8][8];
     
     public void initGame()
@@ -83,5 +83,17 @@ public class Board {
         }
     }
 
+    public void capturePiece(ChessSquare posMove)
+    {
+        Piece pieceToMove= this.spots[posMove.getRow()][posMove.getColumn()];
+        if(pieceToMove.getTypePiece()=='P'){
+            movePawn(pieceToMove, this.spots);
+        }
+    }
+    
+    
+    public void movePawn(Piece pieceToMove,Piece spots[][]){
+        
+    }
 
 }
