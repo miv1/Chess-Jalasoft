@@ -1,9 +1,12 @@
 package jalasoft.bootcamp.chessgame;
+
+import java.util.List;
+
 public abstract class Piece {
     private String type;
     private String color;
-    private char rowCurrent;
-    private byte columnCurrent;
+    private ChessSquare currentSquare;
+    private List<ChessSquare> ValidMoves;
 
     public String getType() {
         return type;
@@ -21,25 +24,19 @@ public abstract class Piece {
         this.color = color;
     }
 
-    public char getRowCurrent() {
-        return rowCurrent;
+    public ChessSquare getCurrentSquare() {
+        return currentSquare;
     }
 
-    public void setRowCurrent(char rowCurrent) {
-        this.rowCurrent = rowCurrent;
+    public void setCurrentSquare(ChessSquare currentSquare) {
+        this.currentSquare = currentSquare;
     }
 
-    public byte getColumnCurrent() {
-        return columnCurrent;
+    public List<ChessSquare> getValidMoves() {
+        return ValidMoves;
     }
 
-    public void setColumnCurrent(byte columnCurrent) {
-        this.columnCurrent = columnCurrent;
+    public void setValidMoves(List<ChessSquare> ValidMoves) {
+        this.ValidMoves = ValidMoves;
     }
-    
-   public boolean move()
-   {
-       return true;
-   }
-    
 }
