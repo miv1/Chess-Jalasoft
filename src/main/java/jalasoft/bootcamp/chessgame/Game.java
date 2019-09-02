@@ -21,6 +21,7 @@ public class Game {
         int selectedRow, selectedColumn;
         Scanner sn = new Scanner(System.in);
         Board boardGame = new Board();
+        RulesGame rules = new RulesGame();
         ArrayList<ChessSquare> listPositionMove = new ArrayList<ChessSquare>();
         
         
@@ -47,7 +48,7 @@ public class Game {
        System.out.println("Enter the column... ");
        selectedColumn=sn.nextInt();
        
-       boardGame.putPiece(new ChessSquare(actualRow, actualColumn), new ChessSquare(selectedRow, selectedColumn));
+       boardGame.spots=rules.putPiece(new ChessSquare(actualRow, actualColumn), new ChessSquare(selectedRow, selectedColumn),boardGame.spots);
        boardGame.showBoard();
     }
            

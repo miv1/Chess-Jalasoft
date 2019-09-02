@@ -51,7 +51,7 @@ public class Board {
                 }
             }
         }
-        spots[2][4] = new Bishop('H', "B", new ChessSquare(2, 4));
+        spots[4][4] = new Bishop('H', "B", new ChessSquare(4, 4));
     }
 
     public void showBoard() {
@@ -88,11 +88,7 @@ public class Board {
         return ValidMoves;
     }
    
-    public void putPiece(ChessSquare actualPosition,ChessSquare selectPosition){
-        this.spots[selectPosition.getRow()][selectPosition.getColumn()]=this.spots[actualPosition.getRow()][actualPosition.getColumn()];
-        this.spots[actualPosition.getRow()][actualPosition.getColumn()]=null;
-        
-    }
+   
             
     
 
