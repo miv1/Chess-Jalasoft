@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Bishop extends Piece{
 
-    public Bishop(char type, String color, ChessSquare currentSquare) {
+    public Bishop(char type, char color, ChessSquare currentSquare) {
         super.setTypePiece(type);
         super.setColor(color);
         super.setCurrentSquare(currentSquare);
@@ -23,5 +23,4 @@ public class Bishop extends Piece{
     public ArrayList<LegalMoves> move(Piece pieceToMove, Piece[][] spots) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 }

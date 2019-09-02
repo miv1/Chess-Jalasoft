@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package jalasoft.bootcamp.chessgame;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author BootCamp LP
- */
 public class Queen extends Piece{
-     public Queen(char type, String color, ChessSquare currentSquare) {
+     public Queen(char type, char color, ChessSquare currentSquare) {
         super.setTypePiece(type);
         super.setColor(color);
         super.setCurrentSquare(currentSquare);

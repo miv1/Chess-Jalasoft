@@ -7,38 +7,42 @@ package jalasoft.bootcamp.chessgame;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
 /**
  *
  * @author BootCamp LP
  */
 public class Game {
 
-    private Board board = new Board();
-   
     public static void main(String[] args) {
         int row, col;
+
+        King king = new King();
+        ChessSquare chessSquare = new ChessSquare(0, 4);
+
         Scanner sn = new Scanner(System.in);
         Board boardGame = new Board();
-        ArrayList<LegalMoves> listPositionMove = new ArrayList<LegalMoves>();
-        
-        
+        ArrayList<ChessSquare> listPositionMove = new ArrayList<ChessSquare>();
+
         boardGame.initGame();
         boardGame.showBoard();
-        
+
         System.out.println("Your turn... Choose a piece");
         System.out.println("Enter the row... ");
-        row=sn.nextInt();
+        row = sn.nextInt();
         System.out.println("Enter the column... ");
-        col=sn.nextInt();
-        
-        //listPositionMove=boardGame.capturePiece(new ChessSquare(row, col));
-        
+        col = sn.nextInt();
+
+        listPositionMove = king.validMovess(chessSquare, boardGame);
+        //listPositionMove = king.validMove(chessSquare, board);
+        //System.out.println(king.validMove(chessSquare, boardGame));
+
         System.out.println("Your possibles movements are...");
-        
-       for(LegalMoves move: listPositionMove){
-           System.out.println(move.row + move.col + move.typeMove);
-       }
-        
+
+        for (ChessSquare move : listPositionMove) {
+            System.out.println(move.getRow() + move.getColumn());
+        }
+
     }
-           
+
 }

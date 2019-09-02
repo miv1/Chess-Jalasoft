@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author BootCamp LP
  */
 public class Rook extends Piece{
-     public Rook(char type, String color, ChessSquare currentSquare) {
+     public Rook(char type, char color, ChessSquare currentSquare) {
         super.setTypePiece(type);
         super.setColor(color);
         super.setCurrentSquare(currentSquare);

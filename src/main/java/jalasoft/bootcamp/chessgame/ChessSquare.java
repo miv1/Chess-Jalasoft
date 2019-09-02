@@ -7,6 +7,10 @@ public class ChessSquare {
         this.row = row;
         this.column = column;
     }
+    
+    public ChessSquare() {
+    }
+    
 
     public int getRow() {
         return row;

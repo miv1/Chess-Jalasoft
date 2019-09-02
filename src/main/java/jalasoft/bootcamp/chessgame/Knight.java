@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author BootCamp LP
  */
 public class Knight extends Piece{
-     public Knight(char type, String color, ChessSquare currentSquare) {
+     public Knight(char type, char color, ChessSquare currentSquare) {
         super.setTypePiece(type);
         super.setColor(color);
         super.setCurrentSquare(currentSquare);

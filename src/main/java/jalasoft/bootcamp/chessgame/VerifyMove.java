@@ -20,25 +20,7 @@ class VerifyMove {
     public void setChessSquare(ChessSquare chessSquare) {
         this.chessSquare = chessSquare;
     }
-
-    public void MovePiece(Piece piece) {
-        switch (piece.getType()) {
-            case 'K':
-                piece.getCurrentSquare().; // code block
-                break;
-            case 'Q':
-                // code block
-                break;
-            case 'B':
-                // code block
-                break;
-            default:
-            // code block
-        }
-
-        for (int i = 0; i < 8; i++) {
-        }
-    }
+   
 
     private boolean verifyColumnPlus(ChessSquare chessSquare) {
         if (chessSquare.getColumn() == 7) {
@@ -47,7 +29,7 @@ class VerifyMove {
         return true;
     }
     
-    private boolean verifyColumnMinus(ChessSquare chessSquare) {
+    public static boolean verifyColumnMinus(ChessSquare chessSquare) {
         if (chessSquare.getColumn() == 0) {
             return false;
         }
@@ -68,14 +50,15 @@ class VerifyMove {
         return true;
     }
      Board board = new Board();
-      private boolean verifyOtherPiece(ChessSquare chessSquareTarjet, Piece piece, ) {
-        if(chessSquareTarjet.getRow(). '')
-          
-          if (piece.getColor() chessSquareTarjet.getRow() == 7) {
-            return false;
-        }
-        return true;
-    }
+//      private boolean verifyOtherPiece(ChessSquare chessSquareTarjet, Piece piece, ) 
+//      {
+//        if(chessSquareTarjet.getRow(). '')
+//          
+//          if (piece.getColor() chessSquareTarjet.getRow() == 7) {
+//            return false;
+//        }
+//        return true;
+//    }
     
 
 }
