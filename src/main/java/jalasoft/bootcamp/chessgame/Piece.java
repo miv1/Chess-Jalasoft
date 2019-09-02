@@ -1,8 +1,9 @@
 package jalasoft.bootcamp.chessgame;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public  class Piece {
+public abstract class Piece {
 
     
     private char typePiece;
@@ -10,15 +11,14 @@ public  class Piece {
     private ChessSquare currentSquare;
     private List<ChessSquare> ValidMoves;
     
-    public Piece(){}
-    
-    public Piece putPiece(char type, String color, ChessSquare currentSquare) {
-        Piece newPiece=new Piece();
-        newPiece.typePiece = type;
-        newPiece.color = color;
-        newPiece.currentSquare = currentSquare;
-        return newPiece;
-    }
+   
+//    public Piece putPiece(char type, String color, ChessSquare currentSquare) {
+//        Piece newPiece=new Piece();
+//        newPiece.typePiece = type;
+//        newPiece.color = color;
+//        newPiece.currentSquare = currentSquare;
+//        return newPiece;
+//    }
    
     public char getTypePiece() {
         return typePiece;
@@ -51,4 +51,14 @@ public  class Piece {
     public void setValidMoves(List<ChessSquare> ValidMoves) {
         this.ValidMoves = ValidMoves;
     }
+     public ArrayList<LegalMoves> capturePiece(ChessSquare posMove, Piece spots[][]) {
+        //this.ValidMoves = spots[posMove.getRow()][posMove.getColumn()];
+        //ArrayList<LegalMoves> positionMove = new ArrayList<LegalMoves>();
+        if (pieceToMove.getTypePiece() == 'P') {
+            positionMove=move(pieceToMove, this.spots);
+        }
+        return positionMove;
+    }
+    public abstract ArrayList<LegalMoves> move(Piece pieceToMove, Piece spots[][]);
+    //public abstract ArrayList<LegalMoves> capturePiece(ChessSquare posMove,Board spots[][]);
 }

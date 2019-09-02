@@ -5,6 +5,7 @@
  */
 package jalasoft.bootcamp.chessgame;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 /**
  *
@@ -18,6 +19,8 @@ public class Game {
         int row, col;
         Scanner sn = new Scanner(System.in);
         Board boardGame = new Board();
+        ArrayList<LegalMoves> listPositionMove = new ArrayList<LegalMoves>();
+        
         
         boardGame.initGame();
         boardGame.showBoard();
@@ -28,7 +31,14 @@ public class Game {
         System.out.println("Enter the column... ");
         col=sn.nextInt();
         
-        boardGame.capturePiece(new ChessSquare(row, col));
+        //listPositionMove=boardGame.capturePiece(new ChessSquare(row, col));
+        
+        System.out.println("Your possibles movements are...");
+        
+       for(LegalMoves move: listPositionMove){
+           System.out.println(move.row + move.col + move.typeMove);
+       }
+        
     }
            
 }
