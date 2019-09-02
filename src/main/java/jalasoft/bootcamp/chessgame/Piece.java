@@ -3,16 +3,16 @@ package jalasoft.bootcamp.chessgame;
 import java.util.List;
 
 public abstract class Piece {
-    private String type;
+    private char type;
     private String color;
     private ChessSquare currentSquare;
     private List<ChessSquare> ValidMoves;
 
-    public String getType() {
+    public char getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(char type) {
         this.type = type;
     }
 
