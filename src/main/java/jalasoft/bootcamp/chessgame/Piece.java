@@ -9,17 +9,8 @@ public abstract class Piece {
     private char typePiece;
     private String color;
     private ChessSquare currentSquare;
-    private List<ChessSquare> ValidMoves;
+    private ArrayList<ChessSquare> ValidMoves;
     
-   
-//    public Piece putPiece(char type, String color, ChessSquare currentSquare) {
-//        Piece newPiece=new Piece();
-//        newPiece.typePiece = type;
-//        newPiece.color = color;
-//        newPiece.currentSquare = currentSquare;
-//        return newPiece;
-//    }
-   
     public char getTypePiece() {
         return typePiece;
     }
@@ -44,21 +35,14 @@ public abstract class Piece {
         this.currentSquare = currentSquare;
     }
 
-    public List<ChessSquare> getValidMoves() {
+    public ArrayList<ChessSquare> getValidMoves() {
         return ValidMoves;
     }
 
     public void setValidMoves(List<ChessSquare> ValidMoves) {
-        this.ValidMoves = ValidMoves;
+        this.ValidMoves = (ArrayList<ChessSquare>) ValidMoves;
     }
-     public ArrayList<LegalMoves> capturePiece(ChessSquare posMove, Piece spots[][]) {
-        //this.ValidMoves = spots[posMove.getRow()][posMove.getColumn()];
-        //ArrayList<LegalMoves> positionMove = new ArrayList<LegalMoves>();
-        if (pieceToMove.getTypePiece() == 'P') {
-            positionMove=move(pieceToMove, this.spots);
-        }
-        return positionMove;
-    }
-    public abstract ArrayList<LegalMoves> move(Piece pieceToMove, Piece spots[][]);
-    //public abstract ArrayList<LegalMoves> capturePiece(ChessSquare posMove,Board spots[][]);
+     
+    public abstract ArrayList<ChessSquare> move(Piece pieceToMove, Piece spots[][]);
+    
 }

@@ -17,8 +17,9 @@ public class King extends Piece{
         super.setColor(color);
         super.setCurrentSquare(currentSquare);
     }
-    @Override
-    public ArrayList<LegalMoves> move(Piece pieceToMove, Piece[][] spots) {
+ 
+     @Override
+    public ArrayList<ChessSquare> move(Piece pieceToMove, Piece[][] spots) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

@@ -5,6 +5,7 @@
  */
 package jalasoft.bootcamp.chessgame;
 
+import java.awt.Checkbox;
 import java.util.ArrayList;
 import java.util.Scanner;
 /**
@@ -16,29 +17,38 @@ public class Game {
     private Board board = new Board();
    
     public static void main(String[] args) {
-        int row, col;
+        int actualRow, actualColumn;
+        int selectedRow, selectedColumn;
         Scanner sn = new Scanner(System.in);
         Board boardGame = new Board();
-        ArrayList<LegalMoves> listPositionMove = new ArrayList<LegalMoves>();
+        ArrayList<ChessSquare> listPositionMove = new ArrayList<ChessSquare>();
         
         
         boardGame.initGame();
         boardGame.showBoard();
         
-        System.out.println("Your turn... Choose a piece");
+        System.out.println("Your turn... Choose a piece... ");
         System.out.println("Enter the row... ");
-        row=sn.nextInt();
+        actualRow=sn.nextInt();
         System.out.println("Enter the column... ");
-        col=sn.nextInt();
+        actualColumn=sn.nextInt();
         
-        //listPositionMove=boardGame.capturePiece(new ChessSquare(row, col));
+        boardGame.showSelectedPiece(new ChessSquare(actualRow, actualColumn));
+        listPositionMove=boardGame.capturePiece(new ChessSquare(actualRow, actualColumn));
         
-        System.out.println("Your possibles movements are...");
+        System.out.println("Your possibles movements are... ");
         
-       for(LegalMoves move: listPositionMove){
-           System.out.println(move.row + move.col + move.typeMove);
+       for(ChessSquare move: listPositionMove){
+           System.out.println("Row : " + move.getRow() +" Column : "+ move.getColumn());
        }
-        
+       System.out.println("Choose your movement... ");
+       System.out.println("Enter the row... ");
+       selectedRow=sn.nextInt();
+       System.out.println("Enter the column... ");
+       selectedColumn=sn.nextInt();
+       
+       boardGame.putPiece(new ChessSquare(actualRow, actualColumn), new ChessSquare(selectedRow, selectedColumn));
+       boardGame.showBoard();
     }
            
 }

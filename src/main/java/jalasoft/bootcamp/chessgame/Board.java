@@ -15,13 +15,13 @@ import java.util.List;
 public class Board {
 
     Piece spots[][] = new Piece[8][8];
+    private ArrayList<ChessSquare> ValidMoves;
 
     public void initGame() {
 
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if (i == 1) {
-                    //Piece pieceSpot=new Piece("P","W",new ChessSquare(i,j));
                     spots[i][j] = new Pawn('P', "B", new ChessSquare(i, j));
                 } else if (i == 6) {
                     spots[i][j] = new Pawn('P', "W", new ChessSquare(i, j));
@@ -51,6 +51,7 @@ public class Board {
                 }
             }
         }
+        spots[2][4] = new Bishop('H', "B", new ChessSquare(2, 4));
     }
 
     public void showBoard() {
@@ -66,6 +67,33 @@ public class Board {
         }
     }
 
+    public void showSelectedPiece(ChessSquare actualPosition) {
+        Piece pieceCapture = this.spots[actualPosition.getRow()][actualPosition.getColumn()];
+        System.out.println("Your choose to move is a : " + this.spots[actualPosition.getRow()][actualPosition.getColumn()].getTypePiece() + " the color is :"
+                + this.spots[actualPosition.getRow()][actualPosition.getColumn()].getColor() + " the position is : " + actualPosition.getRow() + " , " + actualPosition.getColumn());
+    }
+
+    public ArrayList<ChessSquare> capturePiece(ChessSquare actualPosition) {
+        Piece pieceCapture = this.spots[actualPosition.getRow()][actualPosition.getColumn()];
+        Pawn movePawn = new Pawn();
+        Bishop moveBishop = new Bishop();
+        Knight moveKnight = new Knight();
+        if (pieceCapture.getTypePiece() == 'P') {
+            ValidMoves = movePawn.move(pieceCapture, this.spots);
+        } else if (pieceCapture.getTypePiece() == 'B') {
+            ValidMoves = moveBishop.move(pieceCapture, this.spots);
+        } else if (pieceCapture.getTypePiece() == 'H') {
+            ValidMoves = moveKnight.move(pieceCapture, this.spots);
+        }
+        return ValidMoves;
+    }
+   
+    public void putPiece(ChessSquare actualPosition,ChessSquare selectPosition){
+        this.spots[selectPosition.getRow()][selectPosition.getColumn()]=this.spots[actualPosition.getRow()][actualPosition.getColumn()];
+        this.spots[actualPosition.getRow()][actualPosition.getColumn()]=null;
+        
+    }
+            
     
 
 }
