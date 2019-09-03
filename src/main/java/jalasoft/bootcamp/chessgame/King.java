@@ -25,7 +25,7 @@ public class King extends Piece {
                 int coll = Math.abs(chessSquare.getColumn()- j);
                 if (Math.abs(chessSquare.getRow() - i) <= 1 && (Math.abs(chessSquare.getColumn()- j) <= 1)) {
                     
-                    if(!board.spots[Math.abs(chessSquare.getRow() - i)][Math.abs(chessSquare.getColumn()- j)].equals(null) && board.spots[Math.abs(chessSquare.getRow() - i)][Math.abs(chessSquare.getColumn()- j)].getColor() == chessSquare.)
+                    if(!board.spots[Math.abs(chessSquare.getRow() - i)][Math.abs(chessSquare.getColumn()- j)].equals(null))
                     {
                     newChessSquare.setRow(i);
                     newChessSquare.setColumn(j);
@@ -116,4 +116,11 @@ public class King extends Piece {
     public ArrayList<ChessSquare> move(Piece pieceToMove, Piece[][] spots) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }    
+
+    @Override
+    public ArrayList<ChessSquare> searchMate(Piece kingPiece, Piece matePiece, Piece[][] spots) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
 }

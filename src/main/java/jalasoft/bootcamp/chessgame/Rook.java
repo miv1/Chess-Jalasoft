@@ -23,5 +23,11 @@ public class Rook extends Piece{
     public ArrayList<ChessSquare> move(Piece pieceToMove, Piece[][] spots) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public ArrayList<ChessSquare> searchMate(Piece kingPiece, Piece matePiece, Piece[][] spots) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
      
 }

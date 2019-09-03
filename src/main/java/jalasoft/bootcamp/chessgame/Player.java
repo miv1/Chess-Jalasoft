@@ -13,50 +13,60 @@ import java.util.List;
  * @author BootCamp LP
  */
 public class Player {
-     public final int PAWNS = 8;
-    public final int BISHOPS = 2;
-    public final int ROOKS = 2;
-    public boolean white;
+    private String name;
+    private Boolean turn;
+    private char colorPiece;
 
-    private List<Piece> pieces = new ArrayList<>();
-
-    public Player(boolean white) {
-        super();
-        this.white = white;
+    public Player() {
     }
 
-    public List<Piece> getPieces() {
-        return pieces;
+    
+    public Player(String name, boolean turn, char colorPiece) {
+        this.name = name;
+        this.turn = turn;
+        this.colorPiece = colorPiece;
+    }
+    
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
     }
 
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public void initializePieces(){
-//        if(this.white == true){
-//            for(int i=0; i<PAWNS; i++){ // draw pawns
-//                pieces.add(new Pawn(true,i,2));
-//            }
-//            pieces.add(new Rook(true, 0, 0));
-//            pieces.add(new Rook(true, 7, 0));
-//            pieces.add(new Bishop(true, 2, 0));
-//            pieces.add(new Bishop(true, 5, 0));
-//            pieces.add(new Knight(true, 1, 0));
-//            pieces.add(new Knight(true, 6, 0));
-//            pieces.add(new Queen(true, 3, 0));
-//            pieces.add(new King(true, 4, 0));
-//        }
-//        else{
-//            for(int i=0; i<PAWNS; i++){ // draw pawns
-//                pieces.add(new Pawn(true,i,6));
-//            }
-//            pieces.add(new Rook(true, 0, 7));
-//            pieces.add(new Rook(true, 7, 7));
-//            pieces.add(new Bishop(true, 2, 7));
-//            pieces.add(new Bishop(true, 5, 7));
-//            pieces.add(new Knight(true, 1, 7));
-//            pieces.add(new Knight(true, 6, 7));
-//            pieces.add(new Queen(true, 3, 7));
-//            pieces.add(new King(true, 4, 7));
-//        }
+    /**
+     * @return the turn
+     */
+    public boolean isTurn() {
+        return turn;
+    }
 
+    /**
+     * @param turn the turn to set
+     */
+    public void setTurn(boolean turn) {
+        this.turn = turn;
+    }
+
+    /**
+     * @return the colorPiece
+     */
+    public char getColorPiece() {
+        return colorPiece;
+    }
+
+    /**
+     * @param colorPiece the colorPiece to set
+     */
+    public void setColorPiece(char colorPiece) {
+        this.colorPiece = colorPiece;
     }
 }
