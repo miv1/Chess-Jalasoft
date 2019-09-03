@@ -17,17 +17,20 @@ public class King extends Piece {
 
     static ArrayList<String> validMovess(ChessSquare chessSquare, Board board) {
         ArrayList<ChessSquare> possibleMove = new ArrayList<ChessSquare>();
-        
+        ChessSquare newChessSquare = new ChessSquare();
         ArrayList<String> possibleMoveS = new ArrayList<String>();
-        for (int i = 1; i < 8; i++) {
-            for (int j = 1; j < 8; j++) {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
                 int roww = Math.abs(chessSquare.getRow() - i);
-                int coll = Math.abs(chessSquare.getRow() - j);
-                if (Math.abs(chessSquare.getRow() - i) <= 1 && (Math.abs(chessSquare.getRow() - j) <= 1)) {
-                    chessSquare.setRow(i);
-                    chessSquare.setColumn(j);
+                int coll = Math.abs(chessSquare.getColumn()- j);
+                if (Math.abs(chessSquare.getRow() - i) <= 1 && (Math.abs(chessSquare.getColumn()- j) <= 1)) {
+                    
+                    if(!board.spots[Math.abs(chessSquare.getRow() - i)][Math.abs(chessSquare.getColumn()- j)].equals(null) && board.spots[Math.abs(chessSquare.getRow() - i)][Math.abs(chessSquare.getColumn()- j)].getColor() == chessSquare.)
+                    {
+                    newChessSquare.setRow(i);
+                    newChessSquare.setColumn(j);
                     possibleMoveS.add("row " + roww + " col " + coll + " i " + i + " j " + j);
-                }
+                }}
             }
         }
           return possibleMoveS;
