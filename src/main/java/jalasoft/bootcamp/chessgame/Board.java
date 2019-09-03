@@ -53,6 +53,8 @@ public class Board {
                 }
             }
         }
+        spots[5][5] = new Rook('R', 'W', new ChessSquare(5, 5));
+         spots[5][1] = new Rook('R', 'W', new ChessSquare(5, 1));
     }
 
     public void showBoard() {
@@ -79,18 +81,19 @@ public class Board {
         Pawn movePawn = new Pawn();
         Bishop moveBishop = new Bishop();
         Knight moveKnight = new Knight();
+        King moveKing = new King();
+        Rook moveRook = new Rook();
         if (pieceCapture.getTypePiece() == 'P') {
             ValidMoves = movePawn.move(pieceCapture, this.spots);
         } else if (pieceCapture.getTypePiece() == 'B') {
             ValidMoves = moveBishop.move(pieceCapture, this.spots);
         } else if (pieceCapture.getTypePiece() == 'H') {
             ValidMoves = moveKnight.move(pieceCapture, this.spots);
+        } else if (pieceCapture.getTypePiece() == 'K') {
+            ValidMoves = moveKing.move(pieceCapture, this.spots);
+        } else if (pieceCapture.getTypePiece() == 'R') {
+            ValidMoves = moveRook.move(pieceCapture, this.spots);
         }
         return ValidMoves;
     }
-   
-   
-            
-    
-
 }

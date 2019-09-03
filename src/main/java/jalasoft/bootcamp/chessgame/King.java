@@ -1,7 +1,6 @@
 package jalasoft.bootcamp.chessgame;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class King extends Piece {
 
@@ -10,110 +9,27 @@ public class King extends Piece {
         super.setColor(color);
         super.setCurrentSquare(currentSquare);
     }
-    Board board = new Board();
-
+   
     public King() {
     }
-
-    static ArrayList<String> validMovess(ChessSquare chessSquare, Board board) {
-        ArrayList<ChessSquare> possibleMove = new ArrayList<ChessSquare>();
-        ChessSquare newChessSquare = new ChessSquare();
-        ArrayList<String> possibleMoveS = new ArrayList<String>();
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                int roww = Math.abs(chessSquare.getRow() - i);
-                int coll = Math.abs(chessSquare.getColumn()- j);
-                if (Math.abs(chessSquare.getRow() - i) <= 1 && (Math.abs(chessSquare.getColumn()- j) <= 1)) {
-                    
-                    if(!board.spots[Math.abs(chessSquare.getRow() - i)][Math.abs(chessSquare.getColumn()- j)].equals(null) && board.spots[Math.abs(chessSquare.getRow() - i)][Math.abs(chessSquare.getColumn()- j)].getColor() == chessSquare.)
-                    {
-                    newChessSquare.setRow(i);
-                    newChessSquare.setColumn(j);
-                    possibleMoveS.add("row " + roww + " col " + coll + " i " + i + " j " + j);
-                }}
-            }
-        }
-          return possibleMoveS;
-        //return possibleMove;
-    }
-
-    //ArrayList<ChessSquare> validMove(ChessSquare chessSquare, Board board) {
-    Piece validMove(ChessSquare chessSquare, Board board) {
-
-        ArrayList<ChessSquare> possibleMove = new ArrayList<ChessSquare>();
-        ChessSquare newChessSquare;
-        
-        Piece aas = board.spots[chessSquare.getRow()][chessSquare.getColumn()];
-       
-                
-        char color = board.spots[chessSquare.getRow()][chessSquare.getColumn()].getColor();
-        if (color == 'W') {
-            color = 'B';
-        } else {
-            color = 'W';
-        }
-
-        if (board.spots[chessSquare.getRow() + 1][chessSquare.getColumn()] == null || board.spots[chessSquare.getRow() + 1][chessSquare.getColumn()].getColor() == color) {
-            newChessSquare = new ChessSquare();
-            newChessSquare.setRow(chessSquare.getRow() + 1);
-            newChessSquare.setColumn(chessSquare.getColumn());
-            possibleMove.add(chessSquare);
-        }
-
-        if (board.spots[chessSquare.getRow() - 1][chessSquare.getColumn()] == null || board.spots[chessSquare.getRow() - 1][chessSquare.getColumn()].getColor() == color) {
-            newChessSquare = new ChessSquare();
-            newChessSquare.setRow(chessSquare.getRow() - 1);
-            newChessSquare.setColumn(chessSquare.getColumn());
-            possibleMove.add(chessSquare);
-        }
-
-        if (board.spots[chessSquare.getRow()][chessSquare.getColumn() + 1] == null || board.spots[chessSquare.getRow()][chessSquare.getColumn() + 1].getColor() == color) {
-            newChessSquare = new ChessSquare();
-            newChessSquare.setRow(chessSquare.getRow());
-            newChessSquare.setColumn(chessSquare.getColumn() + 1);
-            possibleMove.add(chessSquare);
-        }
-
-        if (board.spots[chessSquare.getRow()][chessSquare.getColumn() - 1] == null || board.spots[chessSquare.getRow()][chessSquare.getColumn() - 1].getColor() == color) {
-            newChessSquare = new ChessSquare();
-            newChessSquare.setRow(chessSquare.getRow());
-            newChessSquare.setColumn(chessSquare.getColumn() - 1);
-            possibleMove.add(chessSquare);
-        }
-
-        if (board.spots[chessSquare.getRow() + 1][chessSquare.getColumn() + 1] == null || board.spots[chessSquare.getRow() + 1][chessSquare.getColumn() + 1].getColor() == color) {
-            newChessSquare = new ChessSquare();
-            newChessSquare.setRow(chessSquare.getRow() + 1);
-            newChessSquare.setColumn(chessSquare.getColumn() + 1);
-            possibleMove.add(chessSquare);
-        }
-
-        if (board.spots[chessSquare.getRow() - 1][chessSquare.getColumn() - 1] == null || board.spots[chessSquare.getRow() - 1][chessSquare.getColumn() - 1].getColor() == color) {
-            newChessSquare = new ChessSquare();
-            newChessSquare.setRow(chessSquare.getRow() - 1);
-            newChessSquare.setColumn(chessSquare.getColumn() - 1);
-            possibleMove.add(chessSquare);
-        }
-
-        if (board.spots[chessSquare.getRow() + 1][chessSquare.getColumn() - 1] == null || board.spots[chessSquare.getRow() + 1][chessSquare.getColumn() - 1].getColor() == color) {
-            newChessSquare = new ChessSquare();
-            newChessSquare.setRow(chessSquare.getRow() + 1);
-            newChessSquare.setColumn(chessSquare.getColumn() - 1);
-            possibleMove.add(chessSquare);
-        }
-
-        if (board.spots[chessSquare.getRow() - 1][chessSquare.getColumn() + 1] == null || board.spots[chessSquare.getRow() - 1][chessSquare.getColumn() + 1].getColor() == color) {
-            newChessSquare = new ChessSquare();
-            newChessSquare.setRow(chessSquare.getRow() - 1);
-            newChessSquare.setColumn(chessSquare.getColumn() + 1);
-            possibleMove.add(chessSquare);
-        }
-
-         return aas;
-        //return possibleMove;
-    }
+    
     @Override
     public ArrayList<ChessSquare> move(Piece pieceToMove, Piece[][] spots) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }    
+        int currentRow = pieceToMove.getCurrentSquare().getRow();
+        int currentColumn = pieceToMove.getCurrentSquare().getColumn();
+        char color = spots[currentRow][currentColumn].getColor();
+        ArrayList<ChessSquare> possibleMove = new ArrayList<ChessSquare>();
+        ChessSquare newChessSquare;
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if ((Math.abs(currentRow - i) <= 1 && (Math.abs(currentColumn - j) <= 1)) && (i != currentRow || j != currentColumn) && ((spots[i][j] == null) || (spots[i][j].getColor() != color))) {
+                        newChessSquare = new ChessSquare();
+                        newChessSquare.setRow(i);
+                        newChessSquare.setColumn(j);
+                        possibleMove.add(newChessSquare);
+                }
+            }
+        }
+        return possibleMove;
+    }
 }

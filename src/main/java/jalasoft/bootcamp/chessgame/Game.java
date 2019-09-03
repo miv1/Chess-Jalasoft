@@ -7,18 +7,13 @@ import java.util.Scanner;
 public class Game {
 
     public static void main(String[] args) {
-        King king = new King();
-        ChessSquare chessSquare = new ChessSquare(0, 4);
         
         int actualRow, actualColumn;
         int selectedRow, selectedColumn;
         Scanner sn = new Scanner(System.in);
         Board boardGame = new Board();
         RulesGame rules = new RulesGame();
-        ArrayList<ChessSquare> listPositionMove = new ArrayList<ChessSquare>();        
-        
-        ArrayList<String> listPositionMovew = new ArrayList<String>();
-        
+        ArrayList<ChessSquare> listPositionMove; 
         boardGame.initGame();
         boardGame.showBoard();
         
@@ -33,10 +28,9 @@ public class Game {
         
         System.out.println("Your possibles movements are... ");
         
-        listPositionMovew = King.validMovess(chessSquare, boardGame);
         
-       for(String mover: listPositionMovew){
-           System.out.println(mover);
+       for(ChessSquare mover: listPositionMove){
+           System.out.println("Row: " + mover.getRow() + " Column: " + mover.getColumn());
        }
        System.out.println("Choose your movement... ");
        System.out.println("Enter the row... ");
@@ -47,5 +41,4 @@ public class Game {
        boardGame.spots=rules.putPiece(new ChessSquare(actualRow, actualColumn), new ChessSquare(selectedRow, selectedColumn),boardGame.spots);
        boardGame.showBoard();
     }
-
 }
