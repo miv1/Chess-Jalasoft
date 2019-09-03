@@ -15,8 +15,10 @@ public class King extends Piece {
     public King() {
     }
 
-    static ArrayList<ChessSquare> validMovess(ChessSquare chessSquare, Board board) {
+    static ArrayList<String> validMovess(ChessSquare chessSquare, Board board) {
         ArrayList<ChessSquare> possibleMove = new ArrayList<ChessSquare>();
+        
+        ArrayList<String> possibleMoveS = new ArrayList<String>();
         for (int i = 1; i < 8; i++) {
             for (int j = 1; j < 8; j++) {
                 int roww = Math.abs(chessSquare.getRow() - i);
@@ -24,11 +26,12 @@ public class King extends Piece {
                 if (Math.abs(chessSquare.getRow() - i) <= 1 && (Math.abs(chessSquare.getRow() - j) <= 1)) {
                     chessSquare.setRow(i);
                     chessSquare.setColumn(j);
-                    possibleMove.add(chessSquare);
+                    possibleMoveS.add("row " + roww + " col " + coll + " i " + i + " j " + j);
                 }
             }
         }
-        return possibleMove;
+          return possibleMoveS;
+        //return possibleMove;
     }
 
     //ArrayList<ChessSquare> validMove(ChessSquare chessSquare, Board board) {
@@ -106,9 +109,8 @@ public class King extends Piece {
          return aas;
         //return possibleMove;
     }
-
     @Override
-    public ArrayList<LegalMoves> move(Piece pieceToMove, Piece[][] spots) {
+    public ArrayList<ChessSquare> move(Piece pieceToMove, Piece[][] spots) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }    
 }

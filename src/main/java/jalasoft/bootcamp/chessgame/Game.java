@@ -1,48 +1,51 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package jalasoft.bootcamp.chessgame;
 
+import java.awt.Checkbox;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/**
- *
- * @author BootCamp LP
- */
 public class Game {
 
     public static void main(String[] args) {
-        int row, col;
-
         King king = new King();
         ChessSquare chessSquare = new ChessSquare(0, 4);
-
+        
+        int actualRow, actualColumn;
+        int selectedRow, selectedColumn;
         Scanner sn = new Scanner(System.in);
         Board boardGame = new Board();
-        ArrayList<ChessSquare> listPositionMove = new ArrayList<ChessSquare>();
-
+        RulesGame rules = new RulesGame();
+        ArrayList<ChessSquare> listPositionMove = new ArrayList<ChessSquare>();        
+        
+        ArrayList<String> listPositionMovew = new ArrayList<String>();
+        
         boardGame.initGame();
         boardGame.showBoard();
-
-        System.out.println("Your turn... Choose a piece");
+        
+        System.out.println("Your turn... Choose a piece... ");
         System.out.println("Enter the row... ");
-        row = sn.nextInt();
+        actualRow=sn.nextInt();
         System.out.println("Enter the column... ");
-        col = sn.nextInt();
-
-        listPositionMove = king.validMovess(chessSquare, boardGame);
-        //listPositionMove = king.validMove(chessSquare, board);
-        //System.out.println(king.validMove(chessSquare, boardGame));
-
-        System.out.println("Your possibles movements are...");
-
-        for (ChessSquare move : listPositionMove) {
-            System.out.println(move.getRow() + move.getColumn());
-        }
-
+        actualColumn=sn.nextInt();
+        
+        boardGame.showSelectedPiece(new ChessSquare(actualRow, actualColumn));
+        listPositionMove=boardGame.capturePiece(new ChessSquare(actualRow, actualColumn));
+        
+        System.out.println("Your possibles movements are... ");
+        
+        listPositionMovew = King.validMovess(chessSquare, boardGame);
+        
+       for(String mover: listPositionMovew){
+           System.out.println(mover);
+       }
+       System.out.println("Choose your movement... ");
+       System.out.println("Enter the row... ");
+       selectedRow=sn.nextInt();
+       System.out.println("Enter the column... ");
+       selectedColumn=sn.nextInt();
+       
+       boardGame.spots=rules.putPiece(new ChessSquare(actualRow, actualColumn), new ChessSquare(selectedRow, selectedColumn),boardGame.spots);
+       boardGame.showBoard();
     }
 
 }

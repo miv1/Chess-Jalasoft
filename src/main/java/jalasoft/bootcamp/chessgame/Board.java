@@ -15,6 +15,7 @@ import java.util.List;
 public class Board {
 
     Piece spots[][] = new Piece[8][8];
+    private ArrayList<ChessSquare> ValidMoves;
 
     public void initGame() {
 
@@ -23,6 +24,7 @@ public class Board {
                 if (i == 1) {
                     //Piece pieceSpot=new Piece("P","W",new ChessSquare(i,j));
                     spots[i][j] = new Pawn('P', 'B', new ChessSquare(i, j));
+
                 } else if (i == 6) {
                     spots[i][j] = new Pawn('P', 'W', new ChessSquare(i, j));
                 } else if ((i == 0 && j == 0) || (i == 0 && j == 7)) {
@@ -66,6 +68,29 @@ public class Board {
         }
     }
 
+    public void showSelectedPiece(ChessSquare actualPosition) {
+        Piece pieceCapture = this.spots[actualPosition.getRow()][actualPosition.getColumn()];
+        System.out.println("Your choose to move is a : " + this.spots[actualPosition.getRow()][actualPosition.getColumn()].getTypePiece() + " the color is :"
+                + this.spots[actualPosition.getRow()][actualPosition.getColumn()].getColor() + " the position is : " + actualPosition.getRow() + " , " + actualPosition.getColumn());
+    }
+
+    public ArrayList<ChessSquare> capturePiece(ChessSquare actualPosition) {
+        Piece pieceCapture = this.spots[actualPosition.getRow()][actualPosition.getColumn()];
+        Pawn movePawn = new Pawn();
+        Bishop moveBishop = new Bishop();
+        Knight moveKnight = new Knight();
+        if (pieceCapture.getTypePiece() == 'P') {
+            ValidMoves = movePawn.move(pieceCapture, this.spots);
+        } else if (pieceCapture.getTypePiece() == 'B') {
+            ValidMoves = moveBishop.move(pieceCapture, this.spots);
+        } else if (pieceCapture.getTypePiece() == 'H') {
+            ValidMoves = moveKnight.move(pieceCapture, this.spots);
+        }
+        return ValidMoves;
+    }
+   
+   
+            
     
 
 }
