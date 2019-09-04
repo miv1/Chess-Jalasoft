@@ -16,14 +16,14 @@ public class Queen extends Piece {
     @Override
     public ArrayList<ChessSquare> move(Piece pieceToMove, Piece[][] spots) {
         ArrayList<ChessSquare> possibleMove = new ArrayList<ChessSquare>();
-        possibleMove.addAll(MovePieces.traceDownLeft(pieceToMove, spots));
-        possibleMove.addAll(MovePieces.traceDownRight(pieceToMove, spots));
-        possibleMove.addAll(MovePieces.traceUpLeft(pieceToMove, spots));
-        possibleMove.addAll(MovePieces.traceUpRigth(pieceToMove, spots));
-        possibleMove.addAll(MovePieces.traceDown(pieceToMove, spots));
-        possibleMove.addAll(MovePieces.traceLeft(pieceToMove, spots));
-        possibleMove.addAll(MovePieces.traceRight(pieceToMove, spots));
-        possibleMove.addAll(MovePieces.traceUp(pieceToMove, spots));
+        possibleMove.addAll(MovePieces.traceDownLeft(pieceToMove.getCurrentSquare(), spots));
+        possibleMove.addAll(MovePieces.traceDownRight(pieceToMove.getCurrentSquare(), spots));
+        possibleMove.addAll(MovePieces.traceUpRigth(pieceToMove.getCurrentSquare(), spots));
+        possibleMove.addAll(MovePieces.traceUpLeft(pieceToMove.getCurrentSquare(), spots));
+        possibleMove.addAll(MovePieces.traceDown(pieceToMove.getCurrentSquare(), spots));
+        possibleMove.addAll(MovePieces.traceLeft(pieceToMove.getCurrentSquare(), spots));
+        possibleMove.addAll(MovePieces.traceRight(pieceToMove.getCurrentSquare(), spots));
+        possibleMove.addAll(MovePieces.traceUp(pieceToMove.getCurrentSquare(), spots));
         return possibleMove;
     }
 

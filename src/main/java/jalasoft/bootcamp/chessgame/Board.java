@@ -49,6 +49,7 @@ public class Board {
                 }
             }
         }
+           spots[5][5] = new Queen('Q', 'W', new ChessSquare(5, 5));
     }
 
     public void showBoard() {

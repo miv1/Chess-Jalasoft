@@ -4,16 +4,14 @@ import java.util.ArrayList;
 
 class MovePieces {
 
-    static ArrayList<ChessSquare> traceDown(Piece pieceToMove, Piece[][] spots) {
-        int currentRow = pieceToMove.getCurrentSquare().getRow();
-        int currentColumn = pieceToMove.getCurrentSquare().getColumn();
-        char color = spots[currentRow][currentColumn].getColor();
+    static ArrayList<ChessSquare> traceDown(ChessSquare pieceToMove, Piece[][] spots) {
+        char color = spots[pieceToMove.getRow()][pieceToMove.getColumn()].getColor();
         ArrayList<ChessSquare> possibleMove = new ArrayList<ChessSquare>();
-        for (int i = currentRow + 1; i < 8; i++) {
-            if (spots[i][currentColumn] == null) {
-                possibleMove.add(new ChessSquare(i, currentColumn));
-            } else if (spots[i][currentColumn].getColor() != color) {
-                possibleMove.add(new ChessSquare(i, currentColumn));
+        for (int i = pieceToMove.getRow() + 1; i < 8; i++) {
+            if (spots[i][pieceToMove.getColumn()] == null) {
+                possibleMove.add(new ChessSquare(i, pieceToMove.getColumn()));
+            } else if (spots[i][pieceToMove.getColumn()].getColor() != color) {
+                possibleMove.add(new ChessSquare(i, pieceToMove.getColumn()));
                 break;
             } else {
                 break;
@@ -22,16 +20,14 @@ class MovePieces {
         return possibleMove;
     }
 
-    static ArrayList<ChessSquare> traceUp(Piece pieceToMove, Piece[][] spots) {
-        int currentRow = pieceToMove.getCurrentSquare().getRow();
-        int currentColumn = pieceToMove.getCurrentSquare().getColumn();
-        char color = spots[currentRow][currentColumn].getColor();
+    static ArrayList<ChessSquare> traceUp(ChessSquare pieceToMove, Piece[][] spots) {
+        char color = spots[pieceToMove.getRow()][pieceToMove.getColumn()].getColor();
         ArrayList<ChessSquare> possibleMove = new ArrayList<ChessSquare>();
-        for (int i = currentRow - 1; i > -1; i--) {
-            if (spots[i][currentColumn] == null) {
-                possibleMove.add(new ChessSquare(i, currentColumn));
-            } else if (spots[i][currentColumn].getColor() != color) {
-                possibleMove.add(new ChessSquare(i, currentColumn));
+        for (int i = pieceToMove.getRow() - 1; i > -1; i--) {
+            if (spots[i][pieceToMove.getColumn()] == null) {
+                possibleMove.add(new ChessSquare(i, pieceToMove.getColumn()));
+            } else if (spots[i][pieceToMove.getColumn()].getColor() != color) {
+                possibleMove.add(new ChessSquare(i, pieceToMove.getColumn()));
                 break;
 
             } else {
@@ -41,16 +37,14 @@ class MovePieces {
         return possibleMove;
     }
 
-    static ArrayList<ChessSquare> traceLeft(Piece pieceToMove, Piece[][] spots) {
-        int currentRow = pieceToMove.getCurrentSquare().getRow();
-        int currentColumn = pieceToMove.getCurrentSquare().getColumn();
-        char color = spots[currentRow][currentColumn].getColor();
+    static ArrayList<ChessSquare> traceLeft(ChessSquare pieceToMove, Piece[][] spots) {
+        char color = spots[pieceToMove.getRow()][pieceToMove.getColumn()].getColor();
         ArrayList<ChessSquare> possibleMove = new ArrayList<ChessSquare>();
-        for (int i = currentColumn - 1; i > -1; i--) {
-            if (spots[currentRow][i] == null) {
-                possibleMove.add(new ChessSquare(currentRow, i));
-            } else if (spots[currentRow][i].getColor() != color) {
-                possibleMove.add(new ChessSquare(currentRow, i));
+        for (int i = pieceToMove.getColumn() - 1; i > -1; i--) {
+            if (spots[pieceToMove.getRow()][i] == null) {
+                possibleMove.add(new ChessSquare(pieceToMove.getRow(), i));
+            } else if (spots[pieceToMove.getRow()][i].getColor() != color) {
+                possibleMove.add(new ChessSquare(pieceToMove.getRow(), i));
                 break;
             } else {
                 break;
@@ -59,58 +53,14 @@ class MovePieces {
         return possibleMove;
     }
 
-    static ArrayList<ChessSquare> traceRight(Piece pieceToMove, Piece[][] spots) {
-        int currentRow = pieceToMove.getCurrentSquare().getRow();
-        int currentColumn = pieceToMove.getCurrentSquare().getColumn();
-        char color = spots[currentRow][currentColumn].getColor();
+    static ArrayList<ChessSquare> traceRight(ChessSquare pieceToMove, Piece[][] spots) {
+        char color = spots[pieceToMove.getRow()][pieceToMove.getColumn()].getColor();
         ArrayList<ChessSquare> possibleMove = new ArrayList<ChessSquare>();
-        for (int i = currentColumn + 1; i < 8; i++) {
-            if (spots[currentRow][i] == null) {
-                possibleMove.add(new ChessSquare(currentRow, i));
-
-            } else if (spots[currentRow][i].getColor() != color) {
-                possibleMove.add(new ChessSquare(currentRow, i));
-                break;
-            } else {
-                break;
-            }
-        }
-        return possibleMove;
-    }
-    
-    
-    static ArrayList<ChessSquare> traceDownLeft(Piece pieceToMove, Piece[][] spots) {
-        int currentRow = pieceToMove.getCurrentSquare().getRow() + 1;
-        int currentColumn = pieceToMove.getCurrentSquare().getColumn() - 1;
-        char color = spots[currentRow - 1][currentColumn + 1].getColor();
-        ArrayList<ChessSquare> possibleMove = new ArrayList<ChessSquare>();
-        while (currentRow != 0 || currentColumn != 0) {
-            if (spots[currentRow][currentColumn] == null) {
-                possibleMove.add(new ChessSquare(currentRow, currentColumn));
-                currentRow++;
-                currentColumn--;
-            } else if (spots[currentRow][currentColumn].getColor() != color) {
-                possibleMove.add(new ChessSquare(currentRow, currentColumn));
-                break;
-            } else {
-                break;
-            }
-        }
-        return possibleMove;
-    }
-    
-    static ArrayList<ChessSquare> traceUpRigth(Piece pieceToMove, Piece[][] spots) {
-        int currentRow = pieceToMove.getCurrentSquare().getRow() - 1;
-        int currentColumn = pieceToMove.getCurrentSquare().getColumn() + 1;
-        char color = spots[currentRow + 1][currentColumn - 1].getColor();
-        ArrayList<ChessSquare> possibleMove = new ArrayList<ChessSquare>();
-        while (currentRow != 0 || currentColumn != 0) {
-            if (spots[currentRow][currentColumn] == null) {
-                possibleMove.add(new ChessSquare(currentRow, currentColumn));
-                currentRow--;
-                currentColumn++;
-            } else if (spots[currentRow][currentColumn].getColor() != color) {
-                possibleMove.add(new ChessSquare(currentRow, currentColumn));
+        for (int i = pieceToMove.getColumn() + 1; i < 8; i++) {
+            if (spots[pieceToMove.getRow()][i] == null) {
+                possibleMove.add(new ChessSquare(pieceToMove.getRow(), i));
+            } else if (spots[pieceToMove.getRow()][i].getColor() != color) {
+                possibleMove.add(new ChessSquare(pieceToMove.getRow(), i));
                 break;
             } else {
                 break;
@@ -119,31 +69,10 @@ class MovePieces {
         return possibleMove;
     }
 
-    static ArrayList<ChessSquare> traceUpLeft(Piece pieceToMove, Piece[][] spots) {
-        int currentRow = pieceToMove.getCurrentSquare().getRow() - 1;
-        int currentColumn = pieceToMove.getCurrentSquare().getColumn() - 1;
-        char color = spots[currentRow + 1][currentColumn + 1].getColor();
-        ArrayList<ChessSquare> possibleMove = new ArrayList<ChessSquare>();
-        while (currentRow != 0 || currentColumn != 0) {
-            if (spots[currentRow][currentColumn] == null) {
-                possibleMove.add(new ChessSquare(currentRow, currentColumn));
-                currentRow--;
-                currentColumn--;
-            } else if (spots[currentRow][currentColumn].getColor() != color) {
-                possibleMove.add(new ChessSquare(currentRow, currentColumn));
-                break;
-            } else {
-                break;
-            }
-        }
-        return possibleMove;
-    }
-    
-    
-    static ArrayList<ChessSquare> traceDownRight(Piece pieceToMove, Piece[][] spots) {
-        int currentRow = pieceToMove.getCurrentSquare().getRow() + 1;
-        int currentColumn = pieceToMove.getCurrentSquare().getColumn() + 1;
-        char color = spots[currentRow - 1][currentColumn - 1].getColor();
+    static ArrayList<ChessSquare> traceDownRight(ChessSquare pieceToMove, Piece[][] spots) {
+        char color = spots[pieceToMove.getRow()][pieceToMove.getColumn()].getColor();
+        int currentRow = pieceToMove.getRow() + 1;
+        int currentColumn = pieceToMove.getColumn() + 1;
         ArrayList<ChessSquare> possibleMove = new ArrayList<ChessSquare>();
         while (currentRow != 8 || currentColumn != 8) {
             if (spots[currentRow][currentColumn] == null) {
@@ -159,33 +88,66 @@ class MovePieces {
         }
         return possibleMove;
     }
-    
-    private boolean verifyColumnPlus(ChessSquare chessSquare) {
-        if (chessSquare.getColumn() == 7) {
-            return false;
+
+    static ArrayList<ChessSquare> traceDownLeft(ChessSquare pieceToMove, Piece[][] spots) {
+        char color = spots[pieceToMove.getRow()][pieceToMove.getColumn()].getColor();
+        ArrayList<ChessSquare> possibleMove = new ArrayList<ChessSquare>();
+        int currentRow = pieceToMove.getRow() + 1;
+        int currentColumn = pieceToMove.getColumn() - 1;
+        while (currentRow < 8 && currentColumn > -1) {
+            if (spots[currentRow][pieceToMove.getColumn()] == null) {
+                possibleMove.add(new ChessSquare(currentRow, currentColumn));
+               currentRow++;
+               currentColumn--;
+            } else if (spots[currentRow][pieceToMove.getColumn()].getColor() != color) {
+                possibleMove.add(new ChessSquare(currentRow, currentColumn));
+                break;
+            } else {
+                break;
+            }
         }
-        return true;
+        return possibleMove;
     }
 
-    public static boolean verifyColumnMinus(ChessSquare chessSquare) {
-        if (chessSquare.getColumn() == 0) {
-            return false;
+    static ArrayList<ChessSquare> traceUpRigth(ChessSquare pieceToMove, Piece[][] spots) {
+        char color = spots[pieceToMove.getRow() ][pieceToMove.getColumn()].getColor();
+        
+        int currentRow = pieceToMove.getRow() - 1;
+        int currentColumn = pieceToMove.getColumn() + 1;
+                
+        ArrayList<ChessSquare> possibleMove = new ArrayList<ChessSquare>();
+        while (currentRow > -1 && currentColumn < 8) {
+            if (spots[currentRow][currentColumn] == null) {
+                possibleMove.add(new ChessSquare(currentRow, currentColumn));
+                currentRow--;
+                currentColumn++;
+            } else if (spots[currentRow][currentColumn].getColor() != color) {
+                possibleMove.add(new ChessSquare(currentRow, currentColumn));
+                break;
+            } else {
+                break;
+            }
         }
-        return true;
+        return possibleMove;
     }
 
-    private boolean verifyRowMinus(ChessSquare chessSquare) {
-        if (chessSquare.getRow() == 0) {
-            return false;
+    static ArrayList<ChessSquare> traceUpLeft(ChessSquare pieceToMove, Piece[][] spots) {
+       char color = spots[pieceToMove.getRow()][pieceToMove.getColumn()].getColor();
+        int currentRow = pieceToMove.getRow() - 1;
+        int currentColumn = pieceToMove.getColumn() - 1;
+        ArrayList<ChessSquare> possibleMove = new ArrayList<ChessSquare>();
+        while (currentRow > -1 && currentColumn > -1) {
+            if (spots[currentRow][currentColumn] == null) {
+                possibleMove.add(new ChessSquare(currentRow, currentColumn));
+                currentRow--;
+                currentColumn--;
+            } else if (spots[currentRow][currentColumn].getColor() != color) {
+                possibleMove.add(new ChessSquare(currentRow, currentColumn));
+                break;
+            } else {
+                break;
+            }
         }
-        return true;
+        return possibleMove;
     }
-
-    private boolean verifyRowPlus(ChessSquare chessSquare) {
-        if (chessSquare.getRow() == 7) {
-            return false;
-        }
-        return true;
-    }
-    Board board = new Board();
 }
