@@ -16,6 +16,7 @@ public class Player {
     private String name;
     private Boolean turn;
     private char colorPiece;
+    private Boolean winner;
 
     public Player() {
     }
@@ -25,6 +26,7 @@ public class Player {
         this.name = name;
         this.turn = turn;
         this.colorPiece = colorPiece;
+        this.winner=Boolean.FALSE;
     }
     
 
@@ -68,5 +70,19 @@ public class Player {
      */
     public void setColorPiece(char colorPiece) {
         this.colorPiece = colorPiece;
+    }
+
+    /**
+     * @return the winner
+     */
+    public Boolean getWinner() {
+        return winner;
+    }
+
+    /**
+     * @param winner the winner to set
+     */
+    public void setWinner(Boolean winner) {
+        this.winner = winner;
     }
 }

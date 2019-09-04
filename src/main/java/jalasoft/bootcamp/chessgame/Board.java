@@ -9,6 +9,8 @@ public class Board {
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_BLACK = "\u001B[30m";
     public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK_WHITE = "\u001B[47;30m ";
+    public static final String ANSI_WHITE_BLACK = "\u001B[40;30m ";
 
     Piece spots[][] = new Piece[8][8];
     private ArrayList<ChessSquare> ValidMoves;
@@ -18,9 +20,7 @@ public class Board {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if (i == 1) {
-                    //Piece pieceSpot=new Piece("P","W",new ChessSquare(i,j));
                     spots[i][j] = new Pawn('P', 'B', new ChessSquare(i, j));
-
                 } else if (i == 6) {
                     spots[i][j] = new Pawn('P', 'W', new ChessSquare(i, j));
                 } else if ((i == 0 && j == 0) || (i == 0 && j == 7)) {
@@ -49,7 +49,6 @@ public class Board {
                 }
             }
         }
-           spots[5][5] = new Queen('Q', 'W', new ChessSquare(5, 5));
     }
 
     public void showBoard() {
@@ -67,7 +66,6 @@ public class Board {
                 }
 
             }
-
             System.out.println("");
         }
     }
@@ -100,5 +98,26 @@ public class Board {
             ValidMoves = moveQueen.move(pieceCapture, this.spots);
         }
         return ValidMoves;
+    }
+
+    public boolean validateColorPiece(ChessSquare posColor, Player playerColor) {
+        if ((posColor.getRow()>=0 && posColor.getRow()<8)
+                &&(posColor.getColumn()>=0 && posColor.getColumn()<8)) {
+            if (this.spots[posColor.getRow()][posColor.getColumn()] != null) {
+                if (this.spots[posColor.getRow()][posColor.getColumn()].getColor() == playerColor.getColorPiece()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean validateMoves(ArrayList<ChessSquare> listMovements, ChessSquare selectePos) {
+        for (ChessSquare moves : listMovements) {
+            if (moves.getRow() == selectePos.getRow() && moves.getColumn() == selectePos.getColumn()) {
+                return true;
+            }
+        }
+        return false;
     }
 }

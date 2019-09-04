@@ -16,23 +16,37 @@ public class RulesGame {
     ArrayList<ChessSquare> listMatePositionAux = new ArrayList<ChessSquare>();
     ArrayList<ChessSquare> listMatePosition = new ArrayList<ChessSquare>();
 
-    public Piece[][] putPiece(ChessSquare actualPosition, ChessSquare selectPosition, Piece[][] spots) {
-        spots[selectPosition.getRow()][selectPosition.getColumn()] = spots[actualPosition.getRow()][actualPosition.getColumn()];
-        spots[actualPosition.getRow()][actualPosition.getColumn()] = null;
+    public Piece[][] putPiece(ChessSquare actualPosition, ChessSquare selectPosition, Piece[][] spots, Player gamePlayer) {
+        if (spots[selectPosition.getRow()][selectPosition.getColumn()] != null) {
+            if (spots[selectPosition.getRow()][selectPosition.getColumn()].getTypePiece() == 'K'
+                    && spots[actualPosition.getRow()][actualPosition.getColumn()].getColor() != spots[selectPosition.getRow()][selectPosition.getColumn()].getColor()) {
+                spots[selectPosition.getRow()][selectPosition.getColumn()] = spots[actualPosition.getRow()][actualPosition.getColumn()];
+                spots[actualPosition.getRow()][actualPosition.getColumn()] = null;
+                gamePlayer.setWinner(Boolean.TRUE);
+            } else {
 
+                spots[selectPosition.getRow()][selectPosition.getColumn()] = spots[actualPosition.getRow()][actualPosition.getColumn()];
+                spots[actualPosition.getRow()][actualPosition.getColumn()] = null;
+                gamePlayer.setWinner(Boolean.FALSE);
+            }
+        } else {
+            spots[selectPosition.getRow()][selectPosition.getColumn()] = spots[actualPosition.getRow()][actualPosition.getColumn()];
+            spots[actualPosition.getRow()][actualPosition.getColumn()] = null;
+            gamePlayer.setWinner(Boolean.FALSE);
+        }
         return spots;
     }
 
     public ArrayList<ChessSquare> listCheckMate(Piece[][] spots, char color) {
         Piece kingPiece = searchKing(spots, color);
-        try{
-        if (kingPiece != null) {
-            listMatePosition = piecePositionMate(kingPiece, spots, color);
+        try {
+            if (kingPiece != null) {
+                listMatePosition = piecePositionMate(kingPiece, spots, color);
+            }
+        } catch (Exception ex) {
+            System.out.println("ERROR listCheckMate" + ex.getMessage().toString());
         }
-        }catch(Exception ex){
-        System.out.println("ERROR listCheckMate" + ex.getMessage().toString());
-    }
-    
+
         return listMatePosition;
     }
 
@@ -61,16 +75,22 @@ public class RulesGame {
                     //System.out.println("PIEZA... " + matePiece.getTypePiece() + " " + matePiece.getColor() + " " + searchRow + "," + searchCol);
                     if (matePiece != null) {
                         listMatePositionAux.clear();
-                        if (matePiece.getTypePiece() == 'P' && matePiece.getColor() != kingPiece.getColor()) {
-                            listMatePositionAux = matePawn.searchMate(kingPiece, matePiece, spots);
-                        }
-//                        if (matePiece.getTypePiece() == 'B' && matePiece.getColor() != kingPiece.getColor() && matePiece != null) {
-//                            listMatePositionAux = mateBishop.searchMate(kingPiece, matePiece, spots);
+//                        if (matePiece.getTypePiece() == 'P' && matePiece.getColor() != kingPiece.getColor()) {
+//                            listMatePositionAux = matePawn.searchMate(kingPiece, matePiece, spots);
 //                        }
+                        if (matePiece.getTypePiece() == 'B' && matePiece.getColor() != kingPiece.getColor()) {
+                            listMatePositionAux = mateBishop.searchMate(kingPiece, matePiece, spots);
+                        }
 //                        if (matePiece.getTypePiece() == 'H' && matePiece.getColor() != kingPiece.getColor() && matePiece != null) {
 //                            listMatePositionAux = mateKnight.searchMate(kingPiece, matePiece, spots);
 //                        }
-                        if(listMatePositionAux.size()>0 && listMatePositionAux!= null){
+//                        if (matePiece.getTypePiece() == 'R' && matePiece.getColor() != kingPiece.getColor() && matePiece != null) {
+//                            listMatePositionAux = mateKnight.searchMate(kingPiece, matePiece, spots);
+//                        }
+//                        if (matePiece.getTypePiece() == 'Q' && matePiece.getColor() != kingPiece.getColor() && matePiece != null) {
+//                            listMatePositionAux = mateKnight.searchMate(kingPiece, matePiece, spots);
+//                        }
+                        if (listMatePositionAux.size() > 0 && listMatePositionAux != null) {
                             listMatePosition.addAll(listMatePositionAux);
                         }
                     }

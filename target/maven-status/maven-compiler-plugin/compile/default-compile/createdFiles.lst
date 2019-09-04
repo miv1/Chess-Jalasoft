@@ -6,7 +6,6 @@ jalasoft\bootcamp\chessgame\Bishop.class
 jalasoft\bootcamp\chessgame\TracePath.class
 jalasoft\bootcamp\chessgame\Queen.class
 jalasoft\bootcamp\chessgame\Pawn.class
-jalasoft\bootcamp\chessgame\VerifyMove.class
 jalasoft\bootcamp\chessgame\Piece.class
 jalasoft\bootcamp\chessgame\Rook.class
 jalasoft\bootcamp\chessgame\ChessSquare.class
