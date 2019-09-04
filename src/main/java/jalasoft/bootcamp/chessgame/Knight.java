@@ -26,6 +26,13 @@ public class Knight extends Piece {
         super.setCurrentSquare(currentSquare);
     }
 
+    private boolean verifyBorders(int row, int column) {
+        if (row < 8 && row > -1 && column < 8 && column > -1) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public ArrayList<ChessSquare> move(Piece pieceToMove, Piece[][] spots) {
 
@@ -35,7 +42,7 @@ public class Knight extends Piece {
             for (int finalRow = 0; finalRow < 8; finalRow++) {
                 for (int finalCol = 0; finalCol < 8; finalCol++) {
                     if (((iniRow - finalRow) * (iniRow - finalRow)) + ((iniCol - finalCol) * (iniCol - finalCol)) == 5
-                            && spots[finalRow][finalCol] == null) {
+                            && spots[finalRow][finalCol] == null && verifyBorders(finalRow, finalCol)) {
                         moves = new ChessSquare(finalRow, finalCol);
                         positionMove.add(moves);
                     }
@@ -50,7 +57,7 @@ public class Knight extends Piece {
             for (int finalRow = 0; finalRow < 8; finalRow++) {
                 for (int finalCol = 0; finalCol < 8; finalCol++) {
                     if (((iniRow - finalRow) * (iniRow - finalRow)) + ((iniCol - finalCol) * (iniCol - finalCol)) == 5
-                            && spots[finalRow][finalCol] == null) {
+                            && spots[finalRow][finalCol] == null && verifyBorders(finalRow, finalCol)) {
                         moves = new ChessSquare(finalRow, finalCol);
                         positionMove.add(moves);
                     }
@@ -75,8 +82,7 @@ public class Knight extends Piece {
             for (int searchCol = 0; searchCol < 8; searchCol++) {
                 if (((matePiece.getCurrentSquare().getRow() - searchRow) * (matePiece.getCurrentSquare().getRow() - searchRow)) + ((matePiece.getCurrentSquare().getColumn() - searchCol) * (matePiece.getCurrentSquare().getColumn() - searchCol)) == 5
                         && searchRow == kingPiece.getCurrentSquare().getRow()
-                        && searchCol == kingPiece.getCurrentSquare().getColumn()
-                        ) {
+                        && searchCol == kingPiece.getCurrentSquare().getColumn()) {
                     moves = new ChessSquare(searchRow, searchCol);
                     positionMove.add(moves);
                 }

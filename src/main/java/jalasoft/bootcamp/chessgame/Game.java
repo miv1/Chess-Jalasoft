@@ -10,6 +10,18 @@ public class Game {
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_BLACK = "\u001B[30m";
     public static final String ANSI_RESET = "\u001B[0m";
+    Player playerBlack = new Player();
+    Player playerWhite = new Player();
+
+    private void insertPlayers() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Name of player with white pieces: ");
+        String namePlayerWhite = scanner.next();
+        playerWhite.setName(namePlayerWhite);
+        System.out.println("Name of player with white pieces: ");
+        namePlayerWhite = scanner.next();
+        playerBlack.setName(namePlayerWhite);
+    }
 
     public static void main(String[] args) {
         int actualRow, actualColumn;
