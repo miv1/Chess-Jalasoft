@@ -73,20 +73,23 @@ public class Game {
                         System.out.println(ANSI_BLUE + "Enter the column to choose your pieces... " + ANSI_RESET);
                         actualColumn = sn.nextInt();
                     }
+                    listPositionMove = boardGame.capturePiece(new ChessSquare(actualRow, actualColumn));
                     
                 } while ((actualRow<0 || actualRow>8)
                         || (actualColumn<0 || actualColumn>8)
-                        || !boardGame.validateColorPiece(new ChessSquare(actualRow, actualColumn), actualPlayer) );
+                        || !boardGame.validateColorPiece(new ChessSquare(actualRow, actualColumn), actualPlayer)
+                        || (listPositionMove.size()<=0 )); //|| (listPositionMove.size()==0 || listPositionMove!=null)
 
-                listPositionMate = rules.listCheckMate(boardGame.spots, actualPlayer.getColorPiece());
+                //listPositionMate = rules.listCheckMate(boardGame.spots, actualPlayer.getColorPiece());
                  //if (listPositionMate != null || listPositionMate.size() > 0) {
                 //for (ChessSquare mater : listPositionMate) {
                 //System.out.println(ANSI_BLACK + "Row: " + mater.getRow() + "Column: " + mater.getColumn() + ANSI_RESET);
                 //}
                 //}
                 boardGame.showSelectedPiece(new ChessSquare(actualRow, actualColumn));
-                listPositionMove = boardGame.capturePiece(new ChessSquare(actualRow, actualColumn));
+                //listPositionMove = boardGame.capturePiece(new ChessSquare(actualRow, actualColumn));
 
+                if(listPositionMove.size()>0 || listPositionMove!=null)
                 if (actualPlayer.getColorPiece() == 'W') {
                     System.out.println(ANSI_RED + actualPlayer.getName() + " your possibles movements are... " + ANSI_RESET);
                 } else {
