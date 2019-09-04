@@ -2,7 +2,7 @@ package jalasoft.bootcamp.chessgame;
 
 import java.util.ArrayList;
 
-class MovePieces {
+class Validation {
 
     static ArrayList<ChessSquare> traceDown(ChessSquare pieceToMove, Piece[][] spots) {
         char color = spots[pieceToMove.getRow()][pieceToMove.getColumn()].getColor();
@@ -97,8 +97,8 @@ class MovePieces {
         while (currentRow < 8 && currentColumn > -1) {
             if (spots[currentRow][pieceToMove.getColumn()] == null) {
                 possibleMove.add(new ChessSquare(currentRow, currentColumn));
-               currentRow++;
-               currentColumn--;
+                currentRow++;
+                currentColumn--;
             } else if (spots[currentRow][pieceToMove.getColumn()].getColor() != color) {
                 possibleMove.add(new ChessSquare(currentRow, currentColumn));
                 break;
@@ -110,11 +110,11 @@ class MovePieces {
     }
 
     static ArrayList<ChessSquare> traceUpRigth(ChessSquare pieceToMove, Piece[][] spots) {
-        char color = spots[pieceToMove.getRow() ][pieceToMove.getColumn()].getColor();
-        
+        char color = spots[pieceToMove.getRow()][pieceToMove.getColumn()].getColor();
+
         int currentRow = pieceToMove.getRow() - 1;
         int currentColumn = pieceToMove.getColumn() + 1;
-                
+
         ArrayList<ChessSquare> possibleMove = new ArrayList<ChessSquare>();
         while (currentRow > -1 && currentColumn < 8) {
             if (spots[currentRow][currentColumn] == null) {
@@ -132,7 +132,7 @@ class MovePieces {
     }
 
     static ArrayList<ChessSquare> traceUpLeft(ChessSquare pieceToMove, Piece[][] spots) {
-       char color = spots[pieceToMove.getRow()][pieceToMove.getColumn()].getColor();
+        char color = spots[pieceToMove.getRow()][pieceToMove.getColumn()].getColor();
         int currentRow = pieceToMove.getRow() - 1;
         int currentColumn = pieceToMove.getColumn() - 1;
         ArrayList<ChessSquare> possibleMove = new ArrayList<ChessSquare>();
@@ -149,5 +149,30 @@ class MovePieces {
             }
         }
         return possibleMove;
+    }
+
+    static String getNamePiece(char type) {
+        String name = "";
+        switch (type) {
+            case 'P':
+                name = "Pawn";
+                break;
+            case 'H':
+                name = "Knight";
+                break;
+            case 'K':
+                name = "King";
+                break;
+            case 'Q':
+                name = "Queen";
+                break;
+            case 'R':
+                name = "Rook";
+                break;
+            case 'B':
+                name = "Bishop";
+                break;               
+        }
+         return name;
     }
 }

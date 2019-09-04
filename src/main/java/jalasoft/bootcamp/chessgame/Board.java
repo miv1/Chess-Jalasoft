@@ -52,7 +52,13 @@ public class Board {
     }
 
     public void showBoard() {
-        for (int row = 0; row < 8; row++) {
+        System.out.print("   ");
+        for (int rowName = 0; rowName < 8; rowName++) {
+             System.out.print(rowName + " | ");
+            }
+         System.out.println();
+        for (int row = 0; row < 8; row++) {      
+             System.out.print(row + " |");
             for (int col = 0; col < 8; col++) {
                 if (this.spots[row][col] == null) {
                     System.out.print(" " + " | ");
@@ -72,8 +78,7 @@ public class Board {
 
     public void showSelectedPiece(ChessSquare actualPosition) {
         Piece pieceCapture = this.spots[actualPosition.getRow()][actualPosition.getColumn()];
-        System.out.println(ANSI_BLACK + "Your choose to move is a : " + this.spots[actualPosition.getRow()][actualPosition.getColumn()].getTypePiece() + " the color is :"
-                + this.spots[actualPosition.getRow()][actualPosition.getColumn()].getColor() + " the position is : " + actualPosition.getRow() + " , " + actualPosition.getColumn() + ANSI_RESET);
+        System.out.println(ANSI_BLACK + "Choose: " + Validation.getNamePiece(this.spots[actualPosition.getRow()][actualPosition.getColumn()].getTypePiece()) + ", the position is : " + actualPosition.getRow() + " , " + actualPosition.getColumn() + ANSI_RESET);
     }
 
     public ArrayList<ChessSquare> capturePiece(ChessSquare actualPosition) {

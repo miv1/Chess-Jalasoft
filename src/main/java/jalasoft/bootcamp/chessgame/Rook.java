@@ -15,10 +15,10 @@ public class Rook extends Piece {
     @Override
     public ArrayList<ChessSquare> move(Piece pieceToMove, Piece[][] spots) {
        ArrayList<ChessSquare> possibleMove = new ArrayList<ChessSquare>();
-        possibleMove.addAll(MovePieces.traceDown(pieceToMove.getCurrentSquare(), spots));
-        possibleMove.addAll(MovePieces.traceUp(pieceToMove.getCurrentSquare(), spots));
-        possibleMove.addAll(MovePieces.traceLeft(pieceToMove.getCurrentSquare(), spots));
-        possibleMove.addAll(MovePieces.traceRight(pieceToMove.getCurrentSquare(), spots));
+        possibleMove.addAll(Validation.traceDown(pieceToMove.getCurrentSquare(), spots));
+        possibleMove.addAll(Validation.traceUp(pieceToMove.getCurrentSquare(), spots));
+        possibleMove.addAll(Validation.traceLeft(pieceToMove.getCurrentSquare(), spots));
+        possibleMove.addAll(Validation.traceRight(pieceToMove.getCurrentSquare(), spots));
         return possibleMove;
     }
  
