@@ -76,6 +76,7 @@ public class Pawn extends Piece {
 
     @Override
     public ArrayList<ChessSquare> searchMate(Piece kingPiece, Piece matePiece, Piece spots[][]) {
+        
         if (spots[matePiece.getCurrentSquare().getRow()][matePiece.getCurrentSquare().getColumn()].getColor() == 'B') {
             if ((matePiece.getCurrentSquare().getRow() + 1 == kingPiece.getCurrentSquare().getRow())
                     && (matePiece.getCurrentSquare().getColumn() + 1 == kingPiece.getCurrentSquare().getColumn())) {

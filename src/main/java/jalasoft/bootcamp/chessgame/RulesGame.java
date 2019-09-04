@@ -78,8 +78,16 @@ public class RulesGame {
 //                        if (matePiece.getTypePiece() == 'P' && matePiece.getColor() != kingPiece.getColor()) {
 //                            listMatePositionAux = matePawn.searchMate(kingPiece, matePiece, spots);
 //                        }
-
+                        if (matePiece.getTypePiece() == 'B' && matePiece.getColor() != kingPiece.getColor()) {
+                            listMatePositionAux = mateBishop.searchMate(kingPiece, matePiece, spots);
+                        }
 //                        if (matePiece.getTypePiece() == 'H' && matePiece.getColor() != kingPiece.getColor() && matePiece != null) {
+//                            listMatePositionAux = mateKnight.searchMate(kingPiece, matePiece, spots);
+//                        }
+//                        if (matePiece.getTypePiece() == 'R' && matePiece.getColor() != kingPiece.getColor() && matePiece != null) {
+//                            listMatePositionAux = mateKnight.searchMate(kingPiece, matePiece, spots);
+//                        }
+//                        if (matePiece.getTypePiece() == 'Q' && matePiece.getColor() != kingPiece.getColor() && matePiece != null) {
 //                            listMatePositionAux = mateKnight.searchMate(kingPiece, matePiece, spots);
 //                        }
                         if (listMatePositionAux.size() > 0 && listMatePositionAux != null) {

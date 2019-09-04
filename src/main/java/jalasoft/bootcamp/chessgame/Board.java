@@ -9,6 +9,8 @@ public class Board {
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_BLACK = "\u001B[30m";
     public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK_WHITE = "\u001B[47;30m ";
+    public static final String ANSI_WHITE_BLACK = "\u001B[40;30m ";
 
     Piece spots[][] = new Piece[8][8];
     private ArrayList<ChessSquare> ValidMoves;
@@ -18,9 +20,7 @@ public class Board {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if (i == 1) {
-                    //Piece pieceSpot=new Piece("P","W",new ChessSquare(i,j));
                     spots[i][j] = new Pawn('P', 'B', new ChessSquare(i, j));
-
                 } else if (i == 6) {
                     spots[i][j] = new Pawn('P', 'W', new ChessSquare(i, j));
                 } else if ((i == 0 && j == 0) || (i == 0 && j == 7)) {
@@ -31,8 +31,8 @@ public class Board {
                     spots[i][j] = new Knight('H', 'B', new ChessSquare(i, j));
                 } else if ((i == 7 && j == 1) || (i == 7 && j == 6)) {
                     spots[i][j] = new Knight('H', 'W', new ChessSquare(i, j));
-//                } else if ((i == 0 && j == 2) || (i == 0 && j == 5)) {
-//                    spots[i][j] = new Bishop('B', 'B', new ChessSquare(i, j));
+                } else if ((i == 0 && j == 2) || (i == 0 && j == 5)) {
+                    spots[i][j] = new Bishop('B', 'B', new ChessSquare(i, j));
                 } else if ((i == 7 && j == 2) || (i == 7 && j == 5)) {
                     spots[i][j] = new Bishop('B', 'W', new ChessSquare(i, j));
                 } else if ((i == 0 && j == 3)) {
@@ -41,8 +41,8 @@ public class Board {
                     spots[i][j] = new Queen('Q', 'W', new ChessSquare(i, j));
                 } else if ((i == 0 && j == 4)) {
                     spots[i][j] = new King('K', 'B', new ChessSquare(i, j));
-//                } else if ((i == 7 && j == 3)) {
-//                    spots[i][j] = new King('K', 'W', new ChessSquare(i, j));
+                } else if ((i == 7 && j == 3)) {
+                    spots[i][j] = new King('K', 'W', new ChessSquare(i, j));
                 } else {
                     Piece pieceSpot = null;
                     spots[i][j] = pieceSpot;
@@ -52,7 +52,7 @@ public class Board {
         spots[5][5] = new King('K', 'W', new ChessSquare(5, 5));
         spots[0][2] = new Bishop('B', 'B', new ChessSquare(0, 2));
         spots[3][3] = new Bishop('B', 'B', new ChessSquare(3, 3));
-        
+
     }
 
     public void showBoard() {
@@ -70,7 +70,6 @@ public class Board {
                 }
 
             }
-
             System.out.println("");
         }
     }
@@ -104,12 +103,25 @@ public class Board {
         }
         return ValidMoves;
     }
-   
-     public boolean validateColorPiece(ChessSquare posColor, Player playerColor){
-        if(this.spots[posColor.getRow()][posColor.getColumn()].getColor()== playerColor.getColorPiece()){
-            return true;
+
+    public boolean validateColorPiece(ChessSquare posColor, Player playerColor) {
+        if ((posColor.getRow()>=0 && posColor.getRow()<8)
+                &&(posColor.getColumn()>=0 && posColor.getColumn()<8)) {
+            if (this.spots[posColor.getRow()][posColor.getColumn()] != null) {
+                if (this.spots[posColor.getRow()][posColor.getColumn()].getColor() == playerColor.getColorPiece()) {
+                    return true;
+                }
+            }
         }
-        
-            return false;   
+        return false;
+    }
+
+    public boolean validateMoves(ArrayList<ChessSquare> listMovements, ChessSquare selectePos) {
+        for (ChessSquare moves : listMovements) {
+            if (moves.getRow() == selectePos.getRow() && moves.getColumn() == selectePos.getColumn()) {
+                return true;
+            }
+        }
+        return false;
     }
 }
