@@ -1,18 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package jalasoft.bootcamp.chessgame;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author BootCamp LP
- */
 public class Board {
+
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RESET = "\u001B[0m";
 
     Piece spots[][] = new Piece[8][8];
     private ArrayList<ChessSquare> ValidMoves;
@@ -53,27 +49,32 @@ public class Board {
                 }
             }
         }
-        spots[5][5] = new Rook('R', 'W', new ChessSquare(5, 5));
-         spots[5][1] = new Rook('R', 'W', new ChessSquare(5, 1));
     }
 
     public void showBoard() {
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (this.spots[i][j] == null) {
-                    System.out.print(" " + "|");
+        for (int row = 0; row < 8; row++) {
+            for (int col = 0; col < 8; col++) {
+                if (this.spots[row][col] == null) {
+                    System.out.print(" " + " | ");
                 } else {
-                    System.out.print(this.spots[i][j].getTypePiece() + "|");
+                    if (this.spots[row][col].getColor() == 'B') {
+                        System.out.print(ANSI_BLUE + this.spots[row][col].getTypePiece() + ANSI_RESET + " | ");
+                    } else {
+                        System.out.print(ANSI_RED + this.spots[row][col].getTypePiece() + ANSI_RESET + " | ");
+                    }
+
                 }
+
             }
+
             System.out.println("");
         }
     }
 
     public void showSelectedPiece(ChessSquare actualPosition) {
         Piece pieceCapture = this.spots[actualPosition.getRow()][actualPosition.getColumn()];
-        System.out.println("Your choose to move is a : " + this.spots[actualPosition.getRow()][actualPosition.getColumn()].getTypePiece() + " the color is :"
-                + this.spots[actualPosition.getRow()][actualPosition.getColumn()].getColor() + " the position is : " + actualPosition.getRow() + " , " + actualPosition.getColumn());
+        System.out.println(ANSI_BLACK + "Your choose to move is a : " + this.spots[actualPosition.getRow()][actualPosition.getColumn()].getTypePiece() + " the color is :"
+                + this.spots[actualPosition.getRow()][actualPosition.getColumn()].getColor() + " the position is : " + actualPosition.getRow() + " , " + actualPosition.getColumn() + ANSI_RESET);
     }
 
     public ArrayList<ChessSquare> capturePiece(ChessSquare actualPosition) {
@@ -83,6 +84,7 @@ public class Board {
         Knight moveKnight = new Knight();
         King moveKing = new King();
         Rook moveRook = new Rook();
+        Queen moveQueen = new Queen();
         if (pieceCapture.getTypePiece() == 'P') {
             ValidMoves = movePawn.move(pieceCapture, this.spots);
         } else if (pieceCapture.getTypePiece() == 'B') {
@@ -93,6 +95,8 @@ public class Board {
             ValidMoves = moveKing.move(pieceCapture, this.spots);
         } else if (pieceCapture.getTypePiece() == 'R') {
             ValidMoves = moveRook.move(pieceCapture, this.spots);
+        } else if (pieceCapture.getTypePiece() == 'Q') {
+            ValidMoves = moveQueen.move(pieceCapture, this.spots);
         }
         return ValidMoves;
     }

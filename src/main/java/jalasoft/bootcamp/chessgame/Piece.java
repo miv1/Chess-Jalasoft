@@ -3,12 +3,13 @@ package jalasoft.bootcamp.chessgame;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Piece {
+ abstract class Piece {
 
     private char typePiece;
     private char color;
     private ChessSquare currentSquare;
     private ArrayList<ChessSquare> validMoves;
+
     public char getTypePiece() {
         return typePiece;
     }
@@ -36,11 +37,11 @@ public abstract class Piece {
     public void setValidMoves(ArrayList<ChessSquare> ValidMoves) {
         this.validMoves = ValidMoves;
     }
-    
+
     List<ChessSquare> validMove(ChessSquare chessSquare) {
         return new ArrayList<ChessSquare>();
     }
-    
+
     public ArrayList<ChessSquare> getValidMoves() {
         return validMoves;
     }
@@ -48,7 +49,9 @@ public abstract class Piece {
     public void setValidMoves(List<ChessSquare> ValidMoves) {
         this.validMoves = (ArrayList<ChessSquare>) ValidMoves;
     }
-     
-    public abstract ArrayList<ChessSquare> move(Piece pieceToMove, Piece spots[][]);
-    
+
+    abstract ArrayList<ChessSquare> move(Piece pieceToMove, Piece spots[][]);
+
+    abstract ArrayList<ChessSquare> searchMate(Piece kingPiece, Piece matePiece, Piece spots[][]);
+
 }

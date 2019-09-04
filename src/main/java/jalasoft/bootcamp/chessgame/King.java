@@ -32,4 +32,9 @@ public class King extends Piece {
         }
         return possibleMove;
     }
+    
+    @Override
+    public ArrayList<ChessSquare> searchMate(Piece kingPiece, Piece matePiece, Piece[][] spots) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
