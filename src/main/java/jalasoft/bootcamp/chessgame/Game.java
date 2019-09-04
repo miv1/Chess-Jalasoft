@@ -16,33 +16,17 @@ public class Game {
         int selectedRow, selectedColumn;
         String namePlayer = "";
         String colorPlayer;
+        Boolean turn = false;
+
         Scanner sn = new Scanner(System.in);
         Board boardGame = new Board();
         RulesGame rules = new RulesGame();
+        Player actualPlayer = new Player();
+
         ArrayList<ChessSquare> listPositionMove;
-        boardGame.initGame();
-        boardGame.showBoard();
-        System.out.println("Your turn... Choose a piece... ");
-        System.out.println("Enter the row... ");
-        actualRow = sn.nextInt();
-        System.out.println("Enter the column... ");
-        actualColumn = sn.nextInt();
-        boardGame.showSelectedPiece(new ChessSquare(actualRow, actualColumn));
-        listPositionMove = boardGame.capturePiece(new ChessSquare(actualRow, actualColumn));
-        System.out.println("Your possibles movements are... ");
-        for (ChessSquare mover : listPositionMove) {
-            System.out.println("Row: " + mover.getRow() + " Column: " + mover.getColumn());
-        }
-        System.out.println("Choose your movement... ");
-        System.out.println("Enter the row... ");
-        selectedRow = sn.nextInt();
-        System.out.println("Enter the column... ");
-        selectedColumn = sn.nextInt();
-        boardGame.spots = rules.putPiece(new ChessSquare(actualRow, actualColumn), new ChessSquare(selectedRow, selectedColumn), boardGame.spots);
-        boardGame.showBoard();
         ArrayList<Player> listPlayers = new ArrayList<Player>();
         ArrayList<ChessSquare> listPositionMate = new ArrayList<ChessSquare>();
-        Boolean turn = false;
+
         for (int i = 0; i < 2; i++) {
             System.out.println(ANSI_BLACK + "Player " + i + "... Enter your name" + ANSI_RESET);
             namePlayer = sn.next();
@@ -51,38 +35,55 @@ public class Game {
             listPlayers.add(new Player(namePlayer, turn, colorPlayer.charAt(0)));
             turn = true;
         }
+
         System.out.println(ANSI_RED + "GAME STARTS!!!" + ANSI_RESET);
         boardGame.initGame();
         boardGame.showBoard();
-        for (int i = 0; i < 10; i++) {
+        while (1!=2) {
             for (Player play : listPlayers) {
                 if (play.isTurn()) {
-                    namePlayer = play.getName();
+                    actualPlayer = play;
                 }
             }
+            
+            do{
             System.out.println(ANSI_BLACK + namePlayer + " your turn... Choose a piece... " + ANSI_RESET);
-            System.out.println(ANSI_BLACK + "Enter the row... " + ANSI_RESET);
+                System.out.println("Color" + actualPlayer.getColorPiece());
+            System.out.println(ANSI_BLACK + "Enter the row to choose your piece... " + ANSI_RESET);
             actualRow = sn.nextInt();
-            System.out.println(ANSI_BLACK + "Enter the column... " + ANSI_RESET);
+            System.out.println(ANSI_BLACK + "Enter the column to choose your pieces... " + ANSI_RESET);
             actualColumn = sn.nextInt();
+            }while(!boardGame.validateColorPiece(new ChessSquare(actualRow, actualColumn),actualPlayer));
+            
             boardGame.showSelectedPiece(new ChessSquare(actualRow, actualColumn));
             listPositionMove = boardGame.capturePiece(new ChessSquare(actualRow, actualColumn));
+            
             System.out.println(ANSI_BLACK + namePlayer + " your possibles movements are... " + ANSI_RESET);
+            
             for (ChessSquare mover : listPositionMove) {
                 System.out.println(ANSI_BLACK + "( " + mover.getRow() + " ,  " + mover.getColumn() + ")" + ANSI_RESET);
             }
+            
             System.out.println(ANSI_BLACK + "Choose your movement... " + ANSI_RESET);
-            System.out.println(ANSI_BLACK + "Enter the row... " + ANSI_RESET);
-            selectedRow = sn.nextInt();
-            System.out.println(ANSI_BLACK + "Enter the column... " + ANSI_RESET);
+            System.out.println(ANSI_BLACK + "Enter the row to move your piece... " + ANSI_RESET);
+            selectedRow = sn.nextInt(); 
+            System.out.println(ANSI_BLACK + "Enter the column to move your piece... " + ANSI_RESET);
             selectedColumn = sn.nextInt();
-            listPositionMate = rules.listCheckMate(boardGame.spots, 'B');
-            if (listPositionMate != null || listPositionMate.size() > 0) {
-                for (ChessSquare mater : listPositionMate) {
-                    System.out.println(ANSI_BLACK + "Row: " + mater.getRow() + "Column: " + mater.getColumn() + ANSI_RESET);
-                }
+            
+            //listPositionMate = rules.listCheckMate(boardGame.spots, 'W');
+            //if (listPositionMate != null || listPositionMate.size() > 0) {
+                //for (ChessSquare mater : listPositionMate) {
+                    //System.out.println(ANSI_BLACK + "Row: " + mater.getRow() + "Column: " + mater.getColumn() + ANSI_RESET);
+                //}
+            //}
+            
+            boardGame.spots = rules.putPiece(new ChessSquare(actualRow, actualColumn), new ChessSquare(selectedRow, selectedColumn), boardGame.spots, actualPlayer);
+            if (actualPlayer.getWinner()) {
+                System.out.println(actualPlayer.getName() + " WIN!!!!!");
+                boardGame.showBoard();
+                break;
             }
-            boardGame.spots = rules.putPiece(new ChessSquare(actualRow, actualColumn), new ChessSquare(selectedRow, selectedColumn), boardGame.spots);
+            
             boardGame.showBoard();
         }
     }

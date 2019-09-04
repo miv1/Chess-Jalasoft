@@ -31,8 +31,8 @@ public class Board {
                     spots[i][j] = new Knight('H', 'B', new ChessSquare(i, j));
                 } else if ((i == 7 && j == 1) || (i == 7 && j == 6)) {
                     spots[i][j] = new Knight('H', 'W', new ChessSquare(i, j));
-                } else if ((i == 0 && j == 2) || (i == 0 && j == 5)) {
-                    spots[i][j] = new Bishop('B', 'B', new ChessSquare(i, j));
+//                } else if ((i == 0 && j == 2) || (i == 0 && j == 5)) {
+//                    spots[i][j] = new Bishop('B', 'B', new ChessSquare(i, j));
                 } else if ((i == 7 && j == 2) || (i == 7 && j == 5)) {
                     spots[i][j] = new Bishop('B', 'W', new ChessSquare(i, j));
                 } else if ((i == 0 && j == 3)) {
@@ -41,14 +41,18 @@ public class Board {
                     spots[i][j] = new Queen('Q', 'W', new ChessSquare(i, j));
                 } else if ((i == 0 && j == 4)) {
                     spots[i][j] = new King('K', 'B', new ChessSquare(i, j));
-                } else if ((i == 7 && j == 3)) {
-                    spots[i][j] = new King('K', 'W', new ChessSquare(i, j));
+//                } else if ((i == 7 && j == 3)) {
+//                    spots[i][j] = new King('K', 'W', new ChessSquare(i, j));
                 } else {
                     Piece pieceSpot = null;
                     spots[i][j] = pieceSpot;
                 }
             }
         }
+        spots[5][5] = new King('K', 'W', new ChessSquare(5, 5));
+        spots[0][2] = new Bishop('B', 'B', new ChessSquare(0, 2));
+        spots[3][3] = new Bishop('B', 'B', new ChessSquare(3, 3));
+        
     }
 
     public void showBoard() {
@@ -99,5 +103,13 @@ public class Board {
             ValidMoves = moveQueen.move(pieceCapture, this.spots);
         }
         return ValidMoves;
+    }
+   
+     public boolean validateColorPiece(ChessSquare posColor, Player playerColor){
+        if(this.spots[posColor.getRow()][posColor.getColumn()].getColor()== playerColor.getColorPiece()){
+            return true;
+        }
+        
+            return false;   
     }
 }
