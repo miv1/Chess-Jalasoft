@@ -74,7 +74,7 @@ class Validation {
         int currentRow = pieceToMove.getRow() + 1;
         int currentColumn = pieceToMove.getColumn() + 1;
         ArrayList<ChessSquare> possibleMove = new ArrayList<ChessSquare>();
-        while (currentRow != 8 || currentColumn != 8) {
+        while (currentRow != 8 && currentColumn != 8) {
             if (spots[currentRow][currentColumn] == null) {
                 possibleMove.add(new ChessSquare(currentRow, currentColumn));
                 currentRow++;

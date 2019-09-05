@@ -14,7 +14,6 @@ public class Game {
     public static final String ANSI_BLACK_WHITE = "\u001B[47;30m ";
     public static final String ANSI_WHITE_BLACK = "\u001B[40;30m ";
 
-
     public static void main(String[] args) {
         int actualRow, actualColumn;
         int selectedRow, selectedColumn;
@@ -61,38 +60,39 @@ public class Game {
             if (actualPlayer.isTurn() == true) {
                 do {
                     if (actualPlayer.getColorPiece() == 'W') {
-                        System.out.println(ANSI_RED + actualPlayer.getName() + ": Choose a piece: " + ANSI_RESET);
+                        System.out.println(ANSI_RED + actualPlayer.getName() + " Choose a piece: " + ANSI_RESET);
                         System.out.print(ANSI_RED + "Row: " + ANSI_RESET);
                         actualRow = sn.nextInt();
                         System.out.print(ANSI_RED + "Column: " + ANSI_RESET);
                         actualColumn = sn.nextInt();
                     } else {
-                        System.out.println(ANSI_BLUE + actualPlayer.getName() + "Choose a piece: " + ANSI_RESET);
+                        System.out.println(ANSI_BLUE + actualPlayer.getName() + " Choose a piece: " + ANSI_RESET);
                         System.out.print(ANSI_BLUE + "Row " + ANSI_RESET);
                         actualRow = sn.nextInt();
                         System.out.print(ANSI_BLUE + "Column " + ANSI_RESET);
                         actualColumn = sn.nextInt();
                     }
                     listPositionMove = boardGame.capturePiece(new ChessSquare(actualRow, actualColumn));
-                    
-                } while ((actualRow<0 || actualRow>8)
-                        || (actualColumn<0 || actualColumn>8)
+
+                } while ((actualRow < 0 || actualRow > 8)
+                        || (actualColumn < 0 || actualColumn > 8)
                         || !boardGame.validateColorPiece(new ChessSquare(actualRow, actualColumn), actualPlayer)
-                        || (listPositionMove.size()<=0 )); //|| (listPositionMove.size()==0 || listPositionMove!=null)
+                        || (listPositionMove.size() <= 0)); //|| (listPositionMove.size()==0 || listPositionMove!=null)
 
                 //listPositionMate = rules.listCheckMate(boardGame.spots, actualPlayer.getColorPiece());
-                 //if (listPositionMate != null || listPositionMate.size() > 0) {
+                //if (listPositionMate != null || listPositionMate.size() > 0) {
                 //for (ChessSquare mater : listPositionMate) {
                 //System.out.println(ANSI_BLACK + "Row: " + mater.getRow() + "Column: " + mater.getColumn() + ANSI_RESET);
                 //}
                 //}
                 boardGame.showSelectedPiece(new ChessSquare(actualRow, actualColumn));
 
-                if(listPositionMove.size()>0 || listPositionMove!=null)
-                if (actualPlayer.getColorPiece() == 'W') {
-                    System.out.println(ANSI_RED + actualPlayer.getName() + " your possibles movements are: " + ANSI_RESET);
-                } else {
-                    System.out.println(ANSI_BLUE + actualPlayer.getName() + " your possibles movements are: " + ANSI_RESET);
+                if (listPositionMove.size() > 0 || listPositionMove != null) {
+                    if (actualPlayer.getColorPiece() == 'W') {
+                        System.out.println(ANSI_RED + actualPlayer.getName() + " your possibles movements are: " + ANSI_RESET);
+                    } else {
+                        System.out.println(ANSI_BLUE + actualPlayer.getName() + " your possibles movements are: " + ANSI_RESET);
+                    }
                 }
 
                 for (ChessSquare mover : listPositionMove) {
@@ -119,21 +119,26 @@ public class Game {
                     }
                 } while (!boardGame.validateMoves(listPositionMove, new ChessSquare(selectedRow, selectedColumn)));
 
-                
-               
-                boardGame.spots = rules.putPiece(new ChessSquare(actualRow, actualColumn), new ChessSquare(selectedRow, selectedColumn), boardGame.spots, actualPlayer);
-                if (actualPlayer.getWinner()) {
-                    if (actualPlayer.getColorPiece() == 'W') {
-                        System.out.println(ANSI_RED + actualPlayer.getName() + " WINS !!!!!" + ANSI_RESET);
-                        boardGame.showBoard();
-                    } else {
-                        System.out.println(ANSI_BLUE + actualPlayer.getName() + " WINS !!!!!" + ANSI_RESET);
-                    }
-                    break;
-                } else {
+                if (rules.movePiece(new ChessSquare(selectedRow, selectedColumn), listPositionMove, new ChessSquare(actualRow, actualColumn), boardGame.spots)) {
                     actualPlayer.setTurn(Boolean.FALSE);
+                    if(rules.verifyMate(boardGame.spots[selectedRow][selectedColumn], boardGame.spots)){
+                        System.out.println("Jaque!!!");}
                 }
                 boardGame.showBoard();
+
+//               boardGame.spots = rules.putPiece(new ChessSquare(actualRow, actualColumn), new ChessSquare(selectedRow, selectedColumn), boardGame.spots, actualPlayer);
+//                if (actualPlayer.getWinner()) {
+//                    if (actualPlayer.getColorPiece() == 'W') {
+//                        System.out.println(ANSI_RED + actualPlayer.getName() + " WINS !!!!!" + ANSI_RESET);
+//                        boardGame.showBoard();
+//                    } else {
+//                        System.out.println(ANSI_BLUE + actualPlayer.getName() + " WINS !!!!!" + ANSI_RESET);
+//                    }
+//                    break;
+//                } else {
+//                    actualPlayer.setTurn(Boolean.FALSE);
+//                }
+                // boardGame.showBoard();
             }
         }
     }
