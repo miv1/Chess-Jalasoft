@@ -150,6 +150,23 @@ class Validation {
         }
         return possibleMove;
     }
+    
+    public boolean validateMovesPawn(ChessSquare pieceToMove) {
+
+ 
+
+        if ((pieceToMove.getRow()) < 0 || (pieceToMove.getRow()) > 7
+                || (pieceToMove.getColumn()) < 0 || (pieceToMove.getColumn()) > 7) {
+            return false;
+
+ 
+
+        }
+
+ 
+
+        return true;
+    }
 
     static String getNamePiece(char type) {
         String name = "";
