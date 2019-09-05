@@ -4,17 +4,17 @@ import java.util.ArrayList;
 
 public class King extends Piece {
 
-    public King(char type, char color, ChessSquare currentSquare) {
+    King(char type, char color, ChessSquare currentSquare) {
         super.setTypePiece(type);
         super.setColor(color);
         super.setCurrentSquare(currentSquare);
     }
    
-    public King() {
+    King() {
     }
     
     @Override
-    public ArrayList<ChessSquare> move(Piece pieceToMove, Piece[][] spots) {
+    ArrayList<ChessSquare> move(Piece pieceToMove, Piece[][] spots) {
         int currentRow = pieceToMove.getCurrentSquare().getRow();
         int currentColumn = pieceToMove.getCurrentSquare().getColumn();
         char color = spots[currentRow][currentColumn].getColor();
@@ -35,6 +35,6 @@ public class King extends Piece {
     
     @Override
     public ArrayList<ChessSquare> searchMate(Piece kingPiece, Piece matePiece, Piece[][] spots) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 }

@@ -1,48 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package jalasoft.bootcamp.chessgame;
 
 import java.util.ArrayList;
-
-/**
- *
- * @author BootCamp LP
- */
 public class Knight extends Piece {
 
     ArrayList<ChessSquare> positionMove = new ArrayList<ChessSquare>();
     ChessSquare moves;
 
-    public Knight() {
+    Knight() {
     }
 
-    public Knight(char type, char color, ChessSquare currentSquare) {
-
+    Knight(char type, char color, ChessSquare currentSquare) {
         super.setTypePiece(type);
         super.setColor(color);
         super.setCurrentSquare(currentSquare);
-    }
-
-    private boolean verifyBorders(int row, int column) {
-        if (row < 8 && row > -1 && column < 8 && column > -1) {
-            return true;
-        }
-        return false;
-    }
+    }   
 
     @Override
     public ArrayList<ChessSquare> move(Piece pieceToMove, Piece[][] spots) {
-
         int iniRow = pieceToMove.getCurrentSquare().getRow();
         int iniCol = pieceToMove.getCurrentSquare().getColumn();
         if (spots[pieceToMove.getCurrentSquare().getRow()][pieceToMove.getCurrentSquare().getColumn()].getColor() == 'B') {
             for (int finalRow = 0; finalRow < 8; finalRow++) {
                 for (int finalCol = 0; finalCol < 8; finalCol++) {
                     if (((iniRow - finalRow) * (iniRow - finalRow)) + ((iniCol - finalCol) * (iniCol - finalCol)) == 5
-                            && spots[finalRow][finalCol] == null && verifyBorders(finalRow, finalCol)) {
+                            && spots[finalRow][finalCol] == null && Validation.verifyBorders(finalRow, finalCol)) {
                         moves = new ChessSquare(finalRow, finalCol);
                         positionMove.add(moves);
                     }
@@ -57,7 +38,7 @@ public class Knight extends Piece {
             for (int finalRow = 0; finalRow < 8; finalRow++) {
                 for (int finalCol = 0; finalCol < 8; finalCol++) {
                     if (((iniRow - finalRow) * (iniRow - finalRow)) + ((iniCol - finalCol) * (iniCol - finalCol)) == 5
-                            && spots[finalRow][finalCol] == null && verifyBorders(finalRow, finalCol)) {
+                            && spots[finalRow][finalCol] == null && Validation.verifyBorders(finalRow, finalCol)) {
                         moves = new ChessSquare(finalRow, finalCol);
                         positionMove.add(moves);
                     }
@@ -69,11 +50,8 @@ public class Knight extends Piece {
                 }
             }
         }
-
         this.setValidMoves(positionMove);
-
         return getValidMoves();
-
     }
 
     @Override
@@ -90,5 +68,4 @@ public class Knight extends Piece {
         }
         return null;
     }
-
 }

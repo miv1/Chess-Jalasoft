@@ -36,11 +36,7 @@ import java.util.List;
 
     public void setValidMoves(ArrayList<ChessSquare> ValidMoves) {
         this.validMoves = ValidMoves;
-    }
-
-    List<ChessSquare> validMove(ChessSquare chessSquare) {
-        return new ArrayList<ChessSquare>();
-    }
+    }   
 
     public ArrayList<ChessSquare> getValidMoves() {
         return validMoves;
@@ -51,7 +47,6 @@ import java.util.List;
     }
 
     abstract ArrayList<ChessSquare> move(Piece pieceToMove, Piece spots[][]);
-
     abstract ArrayList<ChessSquare> searchMate(Piece kingPiece, Piece matePiece, Piece spots[][]);
 
 }

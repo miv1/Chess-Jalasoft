@@ -95,7 +95,7 @@ class Validation {
         int currentRow = pieceToMove.getRow() + 1;
         int currentColumn = pieceToMove.getColumn() - 1;
         while (currentRow < 8 && currentColumn > -1) {
-            if (spots[currentRow][pieceToMove.getColumn()] == null) {
+            if (spots[currentRow][currentColumn] == null) {
                 possibleMove.add(new ChessSquare(currentRow, currentColumn));
                 currentRow++;
                 currentColumn--;
@@ -111,10 +111,8 @@ class Validation {
 
     static ArrayList<ChessSquare> traceUpRigth(ChessSquare pieceToMove, Piece[][] spots) {
         char color = spots[pieceToMove.getRow()][pieceToMove.getColumn()].getColor();
-
         int currentRow = pieceToMove.getRow() - 1;
         int currentColumn = pieceToMove.getColumn() + 1;
-
         ArrayList<ChessSquare> possibleMove = new ArrayList<ChessSquare>();
         while (currentRow > -1 && currentColumn < 8) {
             if (spots[currentRow][currentColumn] == null) {
@@ -150,21 +148,19 @@ class Validation {
         }
         return possibleMove;
     }
-    
+
+    static boolean verifyBorders(int row, int column) {
+        if (row < 8 && row > -1 && column < 8 && column > -1) {
+            return true;
+        }
+        return false;
+    }
+
     public boolean validateMovesPawn(ChessSquare pieceToMove) {
-
- 
-
         if ((pieceToMove.getRow()) < 0 || (pieceToMove.getRow()) > 7
                 || (pieceToMove.getColumn()) < 0 || (pieceToMove.getColumn()) > 7) {
             return false;
-
- 
-
         }
-
- 
-
         return true;
     }
 
@@ -188,8 +184,8 @@ class Validation {
                 break;
             case 'B':
                 name = "Bishop";
-                break;               
+                break;
         }
-         return name;
+        return name;
     }
 }

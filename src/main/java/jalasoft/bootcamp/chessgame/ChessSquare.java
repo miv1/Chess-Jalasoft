@@ -3,14 +3,13 @@ public class ChessSquare {
     private int row;
     private int column;
 
-    public ChessSquare(int row, int column) {
+     ChessSquare(int row, int column) {
         this.row = row;
         this.column = column;
     }
     
-    public ChessSquare() {
-    }
-    
+     ChessSquare() {
+    }    
 
     public int getRow() {
         return row;
@@ -26,6 +25,5 @@ public class ChessSquare {
 
     public void setColumn(int column) {
         this.column = column;
-    }
-    
+    }    
 }

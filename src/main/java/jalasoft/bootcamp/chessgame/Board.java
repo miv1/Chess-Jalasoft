@@ -1,21 +1,17 @@
 package jalasoft.bootcamp.chessgame;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Board {
 
-    public static final String ANSI_BLUE = "\u001B[34m";
-    public static final String ANSI_RED = "\u001B[31m";
-    public static final String ANSI_BLACK = "\u001B[30m";
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_BLACK_WHITE = "\u001B[47;30m ";
-    public static final String ANSI_WHITE_BLACK = "\u001B[40;30m ";
+    private static final String ANSI_BLUE = "\u001B[34m";
+    private static final String ANSI_RED = "\u001B[31m";
+    private static final String ANSI_RESET = "\u001B[0m";
 
     Piece spots[][] = new Piece[8][8];
     private ArrayList<ChessSquare> ValidMoves;
 
-    public void initGame() {
+    void initGame() {
 
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -37,11 +33,11 @@ public class Board {
                     spots[i][j] = new Bishop('B', 'W', new ChessSquare(i, j));
                 } else if ((i == 0 && j == 3)) {
                     spots[i][j] = new Queen('Q', 'B', new ChessSquare(i, j));
-                } else if ((i == 7 && j == 4)) {
+                } else if ((i == 7 && j == 3)) {
                     spots[i][j] = new Queen('Q', 'W', new ChessSquare(i, j));
                 } else if ((i == 0 && j == 4)) {
                     spots[i][j] = new King('K', 'B', new ChessSquare(i, j));
-                } else if ((i == 7 && j == 3)) {
+                } else if ((i == 7 && j == 4)) {
                     spots[i][j] = new King('K', 'W', new ChessSquare(i, j));
                 } else {
                     Piece pieceSpot = null;
@@ -51,14 +47,14 @@ public class Board {
         }
     }
 
-    public void showBoard() {
+    void showBoard() {
         System.out.print("   ");
         for (int rowName = 0; rowName < 8; rowName++) {
-             System.out.print(rowName + " | ");
-            }
-         System.out.println();
-        for (int row = 0; row < 8; row++) {      
-             System.out.print(row + " |");
+            System.out.print(rowName + " | ");
+        }
+        System.out.println();
+        for (int row = 0; row < 8; row++) {
+            System.out.print(row + " |");
             for (int col = 0; col < 8; col++) {
                 if (this.spots[row][col] == null) {
                     System.out.print(" " + " | ");
@@ -70,18 +66,12 @@ public class Board {
                     }
 
                 }
-
             }
             System.out.println("");
         }
     }
 
-    public void showSelectedPiece(ChessSquare actualPosition) {
-        Piece pieceCapture = this.spots[actualPosition.getRow()][actualPosition.getColumn()];
-        System.out.println(ANSI_BLACK + "Choose: " + Validation.getNamePiece(this.spots[actualPosition.getRow()][actualPosition.getColumn()].getTypePiece()) + ", the position is : " + actualPosition.getRow() + " , " + actualPosition.getColumn() + ANSI_RESET);
-    }
-
-    public ArrayList<ChessSquare> capturePiece(ChessSquare actualPosition) {
+    ArrayList<ChessSquare> capturePiece(ChessSquare actualPosition) {
         Piece pieceCapture = this.spots[actualPosition.getRow()][actualPosition.getColumn()];
         Pawn movePawn = new Pawn();
         Bishop moveBishop = new Bishop();
@@ -89,25 +79,32 @@ public class Board {
         King moveKing = new King();
         Rook moveRook = new Rook();
         Queen moveQueen = new Queen();
-        if (pieceCapture.getTypePiece() == 'P') {
-            ValidMoves = movePawn.move(pieceCapture, this.spots);
-        } else if (pieceCapture.getTypePiece() == 'B') {
-            ValidMoves = moveBishop.move(pieceCapture, this.spots);
-        } else if (pieceCapture.getTypePiece() == 'H') {
-            ValidMoves = moveKnight.move(pieceCapture, this.spots);
-        } else if (pieceCapture.getTypePiece() == 'K') {
-            ValidMoves = moveKing.move(pieceCapture, this.spots);
-        } else if (pieceCapture.getTypePiece() == 'R') {
-            ValidMoves = moveRook.move(pieceCapture, this.spots);
-        } else if (pieceCapture.getTypePiece() == 'Q') {
-            ValidMoves = moveQueen.move(pieceCapture, this.spots);
+        switch (pieceCapture.getTypePiece()) {
+            case 'P':
+                ValidMoves = movePawn.move(pieceCapture, this.spots);
+                break;
+            case 'B':
+                ValidMoves = moveBishop.move(pieceCapture, this.spots);
+                break;
+            case 'H':
+                ValidMoves = moveKnight.move(pieceCapture, this.spots);
+                break;
+            case 'K':
+                ValidMoves = moveKing.move(pieceCapture, this.spots);
+                break;
+            case 'R':
+                ValidMoves = moveRook.move(pieceCapture, this.spots);
+                break;
+            case 'Q':
+                ValidMoves = moveQueen.move(pieceCapture, this.spots);
+                break;
         }
         return ValidMoves;
     }
 
-    public boolean validateColorPiece(ChessSquare posColor, Player playerColor) {
-        if ((posColor.getRow()>=0 && posColor.getRow()<8)
-                &&(posColor.getColumn()>=0 && posColor.getColumn()<8)) {
+    boolean validateColorPiece(ChessSquare posColor, Player playerColor) {
+        if ((posColor.getRow() >= 0 && posColor.getRow() < 8)
+                && (posColor.getColumn() >= 0 && posColor.getColumn() < 8)) {
             if (this.spots[posColor.getRow()][posColor.getColumn()] != null) {
                 if (this.spots[posColor.getRow()][posColor.getColumn()].getColor() == playerColor.getColorPiece()) {
                     return true;
@@ -117,7 +114,7 @@ public class Board {
         return false;
     }
 
-    public boolean validateMoves(ArrayList<ChessSquare> listMovements, ChessSquare selectePos) {
+    boolean validateMoves(ArrayList<ChessSquare> listMovements, ChessSquare selectePos) {
         for (ChessSquare moves : listMovements) {
             if (moves.getRow() == selectePos.getRow() && moves.getColumn() == selectePos.getColumn()) {
                 return true;

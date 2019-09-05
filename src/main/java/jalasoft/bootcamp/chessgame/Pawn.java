@@ -1,20 +1,22 @@
 package jalasoft.bootcamp.chessgame;
 
 import java.util.ArrayList;
+
 public class Pawn extends Piece {
+
     public Pawn() {
     }
     ChessSquare moves;
-    ArrayList<ChessSquare> positionMove = new ArrayList<ChessSquare>(); 
+    ArrayList<ChessSquare> positionMove = new ArrayList<ChessSquare>();
 
-    public Pawn(char type, char color, ChessSquare currentSquare) {
+    Pawn(char type, char color, ChessSquare currentSquare) {
         super.setTypePiece(type);
         super.setColor(color);
         super.setCurrentSquare(currentSquare);
-    } 
+    }
 
     @Override
-    public ArrayList<ChessSquare> move(Piece pieceToMove, Piece[][] spots) {
+    ArrayList<ChessSquare> move(Piece pieceToMove, Piece[][] spots) {
         Validation movesPawn = new Validation();
         if (spots[pieceToMove.getCurrentSquare().getRow()][pieceToMove.getCurrentSquare().getColumn()].getColor() == 'B') {
             if (movesPawn.validateMovesPawn(new ChessSquare(pieceToMove.getCurrentSquare().getRow() + 1, pieceToMove.getCurrentSquare().getColumn()))) {
@@ -24,7 +26,7 @@ public class Pawn extends Piece {
                 }
             }
             if (movesPawn.validateMovesPawn(new ChessSquare(pieceToMove.getCurrentSquare().getRow() + 2, pieceToMove.getCurrentSquare().getColumn()))
-                    && spots[pieceToMove.getCurrentSquare().getRow() + 1][pieceToMove.getCurrentSquare().getColumn()]==null  
+                    && spots[pieceToMove.getCurrentSquare().getRow() + 1][pieceToMove.getCurrentSquare().getColumn()] == null
                     && pieceToMove.getCurrentSquare().getRow() == 1) {
                 if (spots[pieceToMove.getCurrentSquare().getRow() + 2][pieceToMove.getCurrentSquare().getColumn()] == null) {
                     moves = new ChessSquare(pieceToMove.getCurrentSquare().getRow() + 2, pieceToMove.getCurrentSquare().getColumn());
@@ -51,7 +53,7 @@ public class Pawn extends Piece {
                     moves = new ChessSquare(pieceToMove.getCurrentSquare().getRow() - 1, pieceToMove.getCurrentSquare().getColumn());
                     positionMove.add(moves);
                 }
-            }            
+            }
             if (movesPawn.validateMovesPawn(new ChessSquare(pieceToMove.getCurrentSquare().getRow() - 2, pieceToMove.getCurrentSquare().getColumn()))
                     && spots[pieceToMove.getCurrentSquare().getRow() - 1][pieceToMove.getCurrentSquare().getColumn()] == null
                     && pieceToMove.getCurrentSquare().getRow() == 6) {
@@ -77,10 +79,10 @@ public class Pawn extends Piece {
         }
         this.setValidMoves(positionMove);
         return getValidMoves();
-    } 
+    }
 
     @Override
-    public ArrayList<ChessSquare> searchMate(Piece kingPiece, Piece matePiece, Piece spots[][]) {
+    ArrayList<ChessSquare> searchMate(Piece kingPiece, Piece matePiece, Piece spots[][]) {
         if (spots[matePiece.getCurrentSquare().getRow()][matePiece.getCurrentSquare().getColumn()].getColor() == 'B') {
             if ((matePiece.getCurrentSquare().getRow() + 1 == kingPiece.getCurrentSquare().getRow())
                     && (matePiece.getCurrentSquare().getColumn() + 1 == kingPiece.getCurrentSquare().getColumn())) {
@@ -107,4 +109,3 @@ public class Pawn extends Piece {
         return positionMove;
     }
 }
- 
