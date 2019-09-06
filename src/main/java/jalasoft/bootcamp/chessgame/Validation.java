@@ -157,6 +157,7 @@ class Validation {
     }
 
     public boolean validateMovesPawn(ChessSquare pieceToMove) {
+
         if ((pieceToMove.getRow()) < 0 || (pieceToMove.getRow()) > 7
                 || (pieceToMove.getColumn()) < 0 || (pieceToMove.getColumn()) > 7) {
             return false;
