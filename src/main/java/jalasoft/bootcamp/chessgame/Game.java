@@ -43,7 +43,7 @@ public class Game {
 
         System.out.println(ANSI_RED + "GAME STARTS!!!" + ANSI_RESET);
         boardGame.initGame();
-        boardGame.showBoard();
+        
         while (1 != 2) {
             for (Player play : listPlayers) {
                 if (play.isTurn() == Boolean.TRUE) {
@@ -54,6 +54,7 @@ public class Game {
             }
             if (actualPlayer.isTurn() == true) {
                 do {
+                    boardGame.showBoard();
                     if (actualPlayer.getColorPiece() == 'W') {
                         System.out.println(ANSI_RED + actualPlayer.getName() + " Select a piece: " + ANSI_RESET);
                         System.out.print(ANSI_RED + "Row: " + ANSI_RESET);
@@ -71,7 +72,8 @@ public class Game {
                 } while ((actualRow < 0 || actualRow > 8)
                         || (actualColumn < 0 || actualColumn > 8)
                         || !boardGame.validateColorPiece(new ChessSquare(actualRow, actualColumn), actualPlayer)
-                        || (listPositionMove.size() <= 0));
+                        || (listPositionMove.size() <= 0)
+                        || (listPositionMove == null));
                 System.out.println(ANSI_BLACK + "Selected: " + Validation.getNamePiece(boardGame.spots[actualRow][actualColumn].getTypePiece()) + ", the position is : " + actualRow + " , " + actualColumn + ANSI_RESET);
 
                 if (listPositionMove.size() > 0) {
@@ -91,6 +93,22 @@ public class Game {
                 }
 
                 do {
+                    boardGame.showBoard();
+                    if (listPositionMove.size() > 0) {
+                    if (actualPlayer.getColorPiece() == 'W') {
+                        System.out.println(ANSI_RED + actualPlayer.getName() + " your possibles movements are: " + ANSI_RESET);
+                    } else {
+                        System.out.println(ANSI_BLUE + actualPlayer.getName() + " your possibles movements are: " + ANSI_RESET);
+                    }
+                }
+
+                for (ChessSquare mover : listPositionMove) {
+                    if (actualPlayer.getColorPiece() == 'W') {
+                        System.out.println(ANSI_RED + "( " + mover.getRow() + " ,  " + mover.getColumn() + ")" + ANSI_RESET);
+                    } else {
+                        System.out.println(ANSI_BLUE + "( " + mover.getRow() + " ,  " + mover.getColumn() + ")" + ANSI_RESET);
+                    }
+                }
                     if (actualPlayer.getColorPiece() == 'W') {
                         System.out.println(ANSI_RED + "Move: " + ANSI_RESET);
                         System.out.print(ANSI_RED + "Row to move: " + ANSI_RESET);
@@ -112,7 +130,6 @@ public class Game {
                         System.out.println("CHECK!!!");
                     }
                 }
-                boardGame.showBoard();
             }
         }
     }

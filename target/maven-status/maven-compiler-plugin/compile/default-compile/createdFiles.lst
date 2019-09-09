@@ -3,10 +3,10 @@ jalasoft\bootcamp\chessgame\RulesGame.class
 jalasoft\bootcamp\chessgame\Knight.class
 jalasoft\bootcamp\chessgame\Board.class
 jalasoft\bootcamp\chessgame\Bishop.class
-jalasoft\bootcamp\chessgame\TracePath.class
 jalasoft\bootcamp\chessgame\Queen.class
 jalasoft\bootcamp\chessgame\Pawn.class
 jalasoft\bootcamp\chessgame\Piece.class
+jalasoft\bootcamp\chessgame\Validation.class
 jalasoft\bootcamp\chessgame\Rook.class
 jalasoft\bootcamp\chessgame\ChessSquare.class
 jalasoft\bootcamp\chessgame\Player.class

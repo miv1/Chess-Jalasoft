@@ -6,11 +6,30 @@ public class RulesGame {
 
     ArrayList<ChessSquare> listMatePositionAux = new ArrayList<ChessSquare>();
     ArrayList<ChessSquare> listMatePosition = new ArrayList<ChessSquare>();
+    Board board = new Board();
 
     boolean verifyMate(Piece piece, Piece[][] spots) {
         ArrayList<ChessSquare> possibleMove = piece.move(piece, spots);
         for (ChessSquare move : possibleMove) {
             if (spots[move.getRow()][move.getColumn()] != null && spots[move.getRow()][move.getColumn()].getColor() != piece.getColor() && spots[move.getRow()][move.getColumn()].getTypePiece() == 'K') {
+                return true;
+            }
+        }
+        return false;
+    }
+
+//    public ArrayList<ChessSquare> fillMove(ArrayList<ChessSquare> possibleMove, ChessSquare currentPosition, ChessSquare){
+//        possibleMove.
+//    ArrayList<ChessSquare> possibleMove = new ArrayList<ChessSquare>();
+//    return possibleMove;
+//    }
+    public boolean verifyCheck() {
+        ArrayList<ChessSquare> possibleMove = new ArrayList<ChessSquare>();
+        ArrayList<Piece> listPieces = new ArrayList<Piece>();
+        // char color = 'B';
+        ChessSquare positionKing = board.getKing(listPieces.get(0).getColor());
+        for (ChessSquare move : possibleMove) {
+            if (move.equals(positionKing)) {
                 return true;
             }
         }
@@ -28,7 +47,7 @@ public class RulesGame {
         }
         return false;
     }
-   
+
     private Piece searchKing(Piece[][] spots, char color) {
 
         for (int searchRow = 0; searchRow < 8; searchRow++) {

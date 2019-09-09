@@ -47,6 +47,13 @@ public class Board {
         }
     }
 
+    ChessSquare getKing(char color) {
+        if (color == 'B') {
+            return new ChessSquare(0,4);
+        }
+        return new ChessSquare(7,4);        
+    }
+
     void showBoard() {
         System.out.print("   ");
         for (int rowName = 0; rowName < 8; rowName++) {
@@ -72,37 +79,48 @@ public class Board {
     }
 
     ArrayList<ChessSquare> capturePiece(ChessSquare actualPosition) {
-        Piece pieceCapture = this.spots[actualPosition.getRow()][actualPosition.getColumn()];
+        Piece pieceCapture = null;
+        if ((actualPosition.getRow() > 0 && actualPosition.getRow() < 8)
+                && (actualPosition.getColumn() > 0 || actualPosition.getColumn() < 8)) {
+            pieceCapture = this.spots[actualPosition.getRow()][actualPosition.getColumn()];
+        }
         Pawn movePawn = new Pawn();
         Bishop moveBishop = new Bishop();
         Knight moveKnight = new Knight();
         King moveKing = new King();
         Rook moveRook = new Rook();
         Queen moveQueen = new Queen();
-        switch (pieceCapture.getTypePiece()) {
-            case 'P':
-                ValidMoves = movePawn.move(pieceCapture, this.spots);
-                break;
-            case 'B':
-                ValidMoves = moveBishop.move(pieceCapture, this.spots);
-                break;
-            case 'H':
-                ValidMoves = moveKnight.move(pieceCapture, this.spots);
-                break;
-            case 'K':
-                ValidMoves = moveKing.move(pieceCapture, this.spots);
-                break;
-            case 'R':
-                ValidMoves = moveRook.move(pieceCapture, this.spots);
-                break;
-            case 'Q':
-                ValidMoves = moveQueen.move(pieceCapture, this.spots);
-                break;
+        ValidMoves = null;
+        if (pieceCapture != null) {
+            switch (pieceCapture.getTypePiece()) {
+                case 'P':
+                    ValidMoves = movePawn.move(pieceCapture, this.spots);
+                    break;
+                case 'B':
+                    ValidMoves = moveBishop.move(pieceCapture, this.spots);
+                    break;
+                case 'H':
+                    ValidMoves = moveKnight.move(pieceCapture, this.spots);
+                    break;
+                case 'K':
+                    ValidMoves = moveKing.move(pieceCapture, this.spots);
+                    break;
+                case 'R':
+                    ValidMoves = moveRook.move(pieceCapture, this.spots);
+                    break;
+                case 'Q':
+                    ValidMoves = moveQueen.move(pieceCapture, this.spots);
+                    break;
+                default:
+                    ValidMoves = null;
+                    break;
+            }
         }
         return ValidMoves;
     }
 
-    boolean validateColorPiece(ChessSquare posColor, Player playerColor) {
+    boolean validateColorPiece(ChessSquare posColor, Player playerColor
+    ) {
         if ((posColor.getRow() >= 0 && posColor.getRow() < 8)
                 && (posColor.getColumn() >= 0 && posColor.getColumn() < 8)) {
             if (this.spots[posColor.getRow()][posColor.getColumn()] != null) {
@@ -114,7 +132,8 @@ public class Board {
         return false;
     }
 
-    boolean validateMoves(ArrayList<ChessSquare> listMovements, ChessSquare selectePos) {
+    boolean validateMoves(ArrayList<ChessSquare> listMovements, ChessSquare selectePos
+    ) {
         for (ChessSquare moves : listMovements) {
             if (moves.getRow() == selectePos.getRow() && moves.getColumn() == selectePos.getColumn()) {
                 return true;
