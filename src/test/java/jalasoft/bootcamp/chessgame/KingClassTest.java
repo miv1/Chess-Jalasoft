@@ -1,13 +1,18 @@
 package jalasoft.bootcamp.chessgame;
 
 import java.util.ArrayList;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
 
 public class KingClassTest {
     Board board = new Board();
     ArrayList<ChessSquare> expResult;
-
+   @Before
+    public void setUp() throws Exception {
+        board.initGame();
+    }
+    
     @Test
     public void test_no_space_move() {
         expResult = new ArrayList<ChessSquare>();

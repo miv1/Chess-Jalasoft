@@ -5,6 +5,14 @@ import java.util.List;
 
  abstract class Piece {
 
+    public Piece(char typePiece, char color, ChessSquare currentSquare) {
+        this.typePiece = typePiece;
+        this.color = color;
+        this.currentSquare = currentSquare;
+        this.validMoves = validMoves;
+    }
+
+    public Piece(){}
     private char typePiece;
     private char color;
     private ChessSquare currentSquare;

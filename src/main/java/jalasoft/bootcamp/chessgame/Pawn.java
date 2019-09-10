@@ -4,16 +4,19 @@ import java.util.ArrayList;
 
 public class Pawn extends Piece {
 
-    public Pawn() {
-    }
+    
     ChessSquare moves;
     ArrayList<ChessSquare> positionMove = new ArrayList<ChessSquare>();
 
-    Pawn(char type, char color, ChessSquare currentSquare) {
-        super.setTypePiece(type);
-        super.setColor(color);
-        super.setCurrentSquare(currentSquare);
+    public Pawn(char typePiece, char color, ChessSquare currentSquare) {
+        super(typePiece, color, currentSquare);
     }
+
+   
+
+    public Pawn(){}
+    
+    
 
     @Override
     ArrayList<ChessSquare> move(Piece pieceToMove, Piece[][] spots) {

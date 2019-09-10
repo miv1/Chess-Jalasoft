@@ -49,9 +49,9 @@ public class Board {
 
     ChessSquare getKing(char color) {
         if (color == 'B') {
-            return new ChessSquare(0,4);
+            return new ChessSquare(0, 4);
         }
-        return new ChessSquare(7,4);        
+        return new ChessSquare(7, 4);
     }
 
     void showBoard() {
@@ -80,8 +80,8 @@ public class Board {
 
     ArrayList<ChessSquare> capturePiece(ChessSquare actualPosition) {
         Piece pieceCapture = null;
-        if ((actualPosition.getRow() > 0 && actualPosition.getRow() < 8)
-                && (actualPosition.getColumn() > 0 || actualPosition.getColumn() < 8)) {
+        if ((actualPosition.getRow() > -1 && actualPosition.getRow() < 8)
+                && (actualPosition.getColumn() > -1 || actualPosition.getColumn() < 8)) {
             pieceCapture = this.spots[actualPosition.getRow()][actualPosition.getColumn()];
         }
         Pawn movePawn = new Pawn();
@@ -119,8 +119,7 @@ public class Board {
         return ValidMoves;
     }
 
-    boolean validateColorPiece(ChessSquare posColor, Player playerColor
-    ) {
+    boolean validateColorPiece(ChessSquare posColor, Player playerColor) {
         if ((posColor.getRow() >= 0 && posColor.getRow() < 8)
                 && (posColor.getColumn() >= 0 && posColor.getColumn() < 8)) {
             if (this.spots[posColor.getRow()][posColor.getColumn()] != null) {

@@ -1,11 +1,17 @@
 package jalasoft.bootcamp.chessgame;
 
 import java.util.ArrayList;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
+import org.junit.Test;
 
 public class QueenTest {
 
+    @Before
+    public void setUp() throws Exception {
+        board.initGame();
+    }
     public QueenTest() {
     }
 
